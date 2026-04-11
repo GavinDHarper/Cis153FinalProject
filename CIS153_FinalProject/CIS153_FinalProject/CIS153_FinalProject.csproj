@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Board.cs" />
     <Compile Include="Cell.cs" />
+    <Compile Include="Chip.cs" />
     <Compile Include="Statistics.cs">
       <SubType>Form</SubType>
     </Compile>
