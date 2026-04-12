@@ -57,5 +57,22 @@ namespace CIS153_FinalProject
         //--------------------------------------
         //          Functions
         //--------------------------------------
+
+        public void placePiece(int col, char user)
+         //'user' is to signify which user is placing the piece
+         //doesn't have to be a char, coul be int 1 & 2
+         //or char 'Y' & 'R' (yellow/red), anything works
+        {
+            for (int row = 0; row < 6; row++)
+            {
+                if (board[row, col].isOpen())
+                    //if row at 0 of the chosen column is NOT open,
+                    //increment by 1 and check the next space until one is open
+                {
+                    board[row, col].setCharacter(user);
+                }
+            }
+        }
+
     }
 }
