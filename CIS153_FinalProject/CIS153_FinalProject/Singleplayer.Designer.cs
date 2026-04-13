@@ -1,6 +1,5 @@
 ﻿namespace CIS153_FinalProject
 {
-    //test Owen White
     partial class Singleplayer
     {
         /// <summary>
