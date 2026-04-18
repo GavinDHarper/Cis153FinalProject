@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CIS153_FinalProject
 {
@@ -12,6 +13,9 @@ namespace CIS153_FinalProject
         private int col;
         private char character;
         private char openSpace;
+
+        public PictureBox pictureBox; // object not var
+        
         //--------------------------------------
         //          Setters
         //--------------------------------------

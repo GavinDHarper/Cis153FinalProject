@@ -11,7 +11,8 @@ namespace CIS153_FinalProject
         private int rows;
         private int cols;
         private char openSpace;
-        private Cell[,] board;
+
+        public Cell[,] board; //objects not varables
         //--------------------------------------
         //          Setters
         //--------------------------------------
