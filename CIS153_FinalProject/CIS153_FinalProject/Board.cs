@@ -75,6 +75,24 @@ namespace CIS153_FinalProject
                 }
             }
         }
+
+        public Board(int rows, int cols, char openSpace, Player player1, Player player2)
+        {
+            this.rows = rows;
+            this.cols = cols;
+            this.openSpace = openSpace;
+            this.player1 = player1;
+            this.player2 = player2;
+            board = new Cell[rows, cols];
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    board[i, j] = new Cell(i, j, openSpace);
+                }
+            }
+        }
+
         //--------------------------------------
         //          Functions
         //--------------------------------------
@@ -130,6 +148,346 @@ namespace CIS153_FinalProject
                 }
                 Console.WriteLine();
             }
+        }
+        public bool checkWinRow(int row, int playerId)
+        {
+            //Checks for a win in the specified row when given a player id
+            int chipCount = 0;
+            if (playerId == player1.getId())
+            {
+                for (int i = 0; i < cols; i++)
+                {
+                    if (board[row, i].getChip() == player1.getChip())
+                    {
+                        chipCount++;
+                    }
+                    else
+                    {
+                        chipCount = 0;
+                    }
+                    if (chipCount >= 4)
+                    {
+                        return true;
+                    }
+                }
+            }
+            else if (playerId == player2.getId())
+            {
+                for (int i = 0; i < cols; i++)
+                {
+                    if (board[row, i].getChip() == player2.getChip())
+                    {
+                        chipCount++;
+                    }
+                    else
+                    {
+                        chipCount = 0;
+                    }
+                    if (chipCount >= 4)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public bool checkWinCol(int col, int playerId)
+        {
+            //Checks for a win in the specified col when given a player id
+            int chipCount = 0;
+            if (playerId == player1.getId())
+            {
+                for (int i = 0; i < rows; i++)
+                {
+                    if (board[i, col].getChip() == player1.getChip())
+                    {
+                        chipCount++;
+                    }
+                    else
+                    {
+                        chipCount = 0;
+                    }
+                    if (chipCount >= 4)
+                    {
+                        return true;
+                    }
+                }
+            }
+            else if (playerId == player2.getId())
+            {
+                for (int i = 0; i < rows; i++)
+                {
+                    if (board[i, col].getChip() == player2.getChip())
+                    {
+                        chipCount++;
+                    }
+                    else
+                    {
+                        chipCount = 0;
+                    }
+                    if (chipCount >= 4)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public bool checkWinDiagonal(int playerId)
+        {
+            int chipCount = 0;
+            //============================================
+            //Player 1 win conditions
+            //============================================
+            //---------------------------------
+            //4 length diagonal win conditions
+            //---------------------------------
+            if (playerId == player1.getId())
+            {
+                //diagonal win condition from cell 2,0 to 5,3
+                for (int i = 0; i < 4; i++)
+                {
+                    if (board[(2 + i), (i)].getChip() == player1.getChip())
+                    {
+                        chipCount++;
+                    }
+                    else 
+                    {
+                        chipCount = 0;
+                    }
+                    if (chipCount >= 4)
+                    {
+                        return true;
+                    }
+                }
+                //diagonal win condition from cell 0,3 - 3,6
+                for (int i = 0; i < 4; i++)
+                {
+                    if (board[(i), (3 + i)].getChip() == player1.getChip())
+                    {
+                        chipCount++;
+                    }
+                    else
+                    {
+                        chipCount = 0;
+                    }
+                    if (chipCount >= 4)
+                    {
+                        return true;
+                    }
+                }
+                //---------------------------------
+                //5 length diagonal win conditions
+                //---------------------------------
+                //diagonal win condition from cell 1,0 to 5,4
+                for (int i = 0; i < 5; i++)
+                {
+                    if (board[(1 + i), (i)].getChip() == player1.getChip())
+                    {
+                        chipCount++;
+                    }
+                    else
+                    {
+                        chipCount = 0;
+                    }
+                    if (chipCount >= 4)
+                    {
+                        return true;
+                    }
+                }
+                //diagonal win condition from cell 0,2 to 4,6
+                for (int i = 0; i < 5; i++)
+                {
+                    if (board[(i), (2 + i)].getChip() == player1.getChip())
+                    {
+                        chipCount++;
+                    }
+                    else
+                    {
+                        chipCount = 0;
+                    }
+                    if (chipCount >= 4)
+                    {
+                        return true;
+                    }
+                }
+                //---------------------------------
+                //6 length diagonal win conditions
+                //---------------------------------
+                //diagonal win condition from cell 0,0 to 5,5
+                for (int i = 0; i < 6; i++)
+                {
+                    if (board[(i), (i)].getChip() == player1.getChip())
+                    {
+                        chipCount++;
+                    }
+                    else
+                    {
+                        chipCount = 0;
+                    }
+                    if (chipCount >= 4)
+                    {
+                        return true;
+                    }
+                }
+                //diagonal win condition from cell 0,1 to 5,6
+                for (int i = 0; i < 6; i++)
+                {
+                    if (board[(i), (1 + i)].getChip() == player1.getChip())
+                    {
+                        chipCount++;
+                    }
+                    else
+                    {
+                        chipCount = 0;
+                    }
+                    if (chipCount >= 4)
+                    {
+                        return true;
+                    }
+                }
+            }
+            //============================================
+            //Player 2 win conditions
+            //============================================
+            if (playerId == player2.getId())
+            {
+                //diagonal win condition from cell 2,0 to 5,3
+                for (int i = 0; i < 4; i++)
+                {
+                    if (board[(2 + i), (i)].getChip() == player2.getChip())
+                    {
+                        chipCount++;
+                    }
+                    else
+                    {
+                        chipCount = 0;
+                    }
+                    if (chipCount >= 4)
+                    {
+                        return true;
+                    }
+                }
+                //diagonal win condition from cell 0,3 - 3,6
+                for (int i = 0; i < 4; i++)
+                {
+                    if (board[(i), (3 + i)].getChip() == player2.getChip())
+                    {
+                        chipCount++;
+                    }
+                    else
+                    {
+                        chipCount = 0;
+                    }
+                    if (chipCount >= 4)
+                    {
+                        return true;
+                    }
+                }
+                //---------------------------------
+                //5 length diagonal win conditions
+                //---------------------------------
+                //diagonal win condition from cell 1,0 to 5,4
+                for (int i = 0; i < 5; i++)
+                {
+                    if (board[(1 + i), (i)].getChip() == player2.getChip())
+                    {
+                        chipCount++;
+                    }
+                    else
+                    {
+                        chipCount = 0;
+                    }
+                    if (chipCount >= 4)
+                    {
+                        return true;
+                    }
+                }
+                //diagonal win condition from cell 0,2 to 4,6
+                for (int i = 0; i < 5; i++)
+                {
+                    if (board[(i), (2 + i)].getChip() == player2.getChip())
+                    {
+                        chipCount++;
+                    }
+                    else
+                    {
+                        chipCount = 0;
+                    }
+                    if (chipCount >= 4)
+                    {
+                        return true;
+                    }
+                }
+                //---------------------------------
+                //6 length diagonal win conditions
+                //---------------------------------
+                //diagonal win condition from cell 0,0 to 5,5
+                for (int i = 0; i < 6; i++)
+                {
+                    if (board[(i), (i)].getChip() == player2.getChip())
+                    {
+                        chipCount++;
+                    }
+                    else
+                    {
+                        chipCount = 0;
+                    }
+                    if (chipCount >= 4)
+                    {
+                        return true;
+                    }
+                }
+                //diagonal win condition from cell 0,1 to 5,6
+                for (int i = 0; i < 6; i++)
+                {
+                    if (board[(i), (1 + i)].getChip() == player2.getChip())
+                    {
+                        chipCount++;
+                    }
+                    else
+                    {
+                        chipCount = 0;
+                    }
+                    if (chipCount >= 4)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public bool checkWin(int playerId)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                if (checkWinRow(i, playerId))
+                {
+                    return true;
+                }
+            }
+            for (int i = 0; i < 6; i++)
+            {
+                if (checkWinCol(i, playerId))
+                {
+                    return true;
+                }
+            }
+            if (checkWinDiagonal(playerId))
+            {
+                return true;
+            }
+            reverseBoard();
+            if (checkWinDiagonal(playerId))
+            {
+                reverseBoard();
+                return true;
+            }
+            reverseBoard();
+            return false;
         }
 
         public bool checkDirection(int row, int col, int dRow, int dCol, Chip chip)

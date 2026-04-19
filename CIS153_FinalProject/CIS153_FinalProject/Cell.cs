@@ -65,14 +65,7 @@ namespace CIS153_FinalProject
         }
         public Image getChipImage()
         {
-            if (chip != null)
-            {
-                return this.chip.getImage();
-            }
-            else
-            {
-                return Image.FromFile("../../Resources/emptyCell.png");
-            }
+            return this.chip.getImage();
         }
         public Color getChipColor()
         {
@@ -91,6 +84,7 @@ namespace CIS153_FinalProject
             this.col = col;
             this.character = openSpace;
             this.openSpace = openSpace;
+            this.chip = new Chip("../../Resources/emptyCell.png",Color.White);
         }
         //--------------------------------------
         //          Functions
@@ -108,7 +102,7 @@ namespace CIS153_FinalProject
         }
         public bool hasChip() //Returns true if cell contains a chip of any kind
         {
-            if (chip == null)
+            if (chip.getColor() == Color.White)
             {
                 return false;
             }

@@ -45,14 +45,7 @@ namespace CIS153_FinalProject
         }
         public Image getChipImage()
         {
-            if(chip != null)
-            { 
-                return this.chip.getImage();
-            }
-            else
-            {
-                return Image.FromFile("../../Resources/emptyCell.png");
-            }
+            return this.chip.getImage();
         }
         public Color getChipColor()
         {

@@ -13,12 +13,9 @@ namespace CIS153_FinalProject
 {
     public partial class Twoplayer : Form
     {
-        Board gameBoard = new Board(6, 7, '.');
-        Player player1 = new Player();
-        Player player2 = new Player();
-        Chip redChip = new Chip("../../Resources/connect4chipIconRED.png", Color.Red);
-        Chip blueChip = new Chip("../../Resources/connect4chipIconBLUE.png", Color.Blue);
+        Board gameBoard = new Board(6, 7, '.', new Player(1, "Player 1", new Chip("../../Resources/connect4chipIconRED.png", Color.Red)), new Player(2, "Player 2", new Chip("../../Resources/connect4chipIconBLUE.png", Color.Blue)));
         int playerTurn;
+        bool gameOver = false;
 
         WelcomeForm WCForm;
         public Twoplayer()
@@ -31,15 +28,9 @@ namespace CIS153_FinalProject
             InitializeComponent();
             WCForm = WCF;
             initializeDisplay();
-            player1.setId(1);
-            player1.setName("Player 1");
-            player1.setChip(redChip);
-            player2.setId(2);
-            player2.setName("Player 2");
-            player2.setChip(blueChip);
-
-            playerTurn = player1.getId();
-            lbl_playerTurn.Text = player1.getName() + "'s Turn";
+            playerTurn = gameBoard.getPlayer1().getId();
+            lbl_playerTurn.Text = gameBoard.getPlayer1().getName() + "'s Turn";
+            lbl_playerTurn.ForeColor = gameBoard.getPlayer1().getChipColor();
         }
 
         private void btn_Exit_Click(object sender, EventArgs e)
@@ -51,19 +42,40 @@ namespace CIS153_FinalProject
         {
             int col;
             Button btn = sender as Button;
-            if (btn != null)
+            if (gameOver == false)
             {
-                col = Int32.Parse(btn.Text) - 1;
-                if (playerTurn == player1.getId())
+                if (btn != null)
                 {
-                    gameBoard.placePiece(col, player1);
+                    col = Int32.Parse(btn.Text) - 1;
+                    if (playerTurn == gameBoard.getPlayer1().getId())
+                    {
+                        gameBoard.placePiece(col, gameBoard.getPlayer1());
+                    }
+                    else
+                    {
+                        gameBoard.placePiece(col, gameBoard.getPlayer2());
+                    }
                 }
-                else 
+                if (gameBoard.checkWin(playerTurn))
                 {
-                    gameBoard.placePiece(col, player2);
+                    lbl_playerTurn.Visible = false;
+                    gameOver = true;
+                    if (playerTurn == gameBoard.getPlayer1().getId())
+                    {
+                        lbl_win.Text = gameBoard.getPlayer1().getName() + " Wins!";
+                        lbl_win.ForeColor = gameBoard.getPlayer1().getChipColor();
+                        lbl_win.Visible = true;
+                    }
+                    else
+                    {
+                        lbl_win.Text = gameBoard.getPlayer2().getName() + " Wins!";
+                        lbl_win.ForeColor = gameBoard.getPlayer2().getChipColor();
+                        lbl_win.Visible = true;
+                    }
+
                 }
+                nextTurn();
             }
-            nextTurn();
         }
 
         private void initializeDisplay()
@@ -116,17 +128,19 @@ namespace CIS153_FinalProject
 
         public void nextTurn()
         {
-            if (playerTurn == player1.getId())
+            if (playerTurn == gameBoard.getPlayer1().getId())
             {
-                playerTurn = player2.getId();
-                pictureBox1.Image = player2.getChipImage();
-                lbl_playerTurn.Text = player2.getName() + "'s Turn";
+                playerTurn = gameBoard.getPlayer2().getId();
+                pictureBox1.Image = gameBoard.getPlayer2().getChipImage();
+                lbl_playerTurn.Text = gameBoard.getPlayer2().getName() + "'s Turn";
+                lbl_playerTurn.ForeColor = gameBoard.getPlayer2().getChipColor();
             }
             else
             {
-                playerTurn = player1.getId();
-                pictureBox1.Image = player1.getChipImage();
-                lbl_playerTurn.Text = player1.getName() + "'s Turn";
+                playerTurn = gameBoard.getPlayer1().getId();
+                pictureBox1.Image = gameBoard.getPlayer1().getChipImage();
+                lbl_playerTurn.Text = gameBoard.getPlayer1().getName() + "'s Turn";
+                lbl_playerTurn.ForeColor = gameBoard.getPlayer1().getChipColor();
             }
 
 

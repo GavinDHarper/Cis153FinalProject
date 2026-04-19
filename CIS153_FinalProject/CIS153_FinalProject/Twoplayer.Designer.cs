@@ -80,6 +80,7 @@
             this.SP_06 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbl_playerTurn = new System.Windows.Forms.Label();
+            this.lbl_win = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.SP_00)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_20)).BeginInit();
@@ -684,17 +685,30 @@
             // 
             this.lbl_playerTurn.AutoSize = true;
             this.lbl_playerTurn.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_playerTurn.Location = new System.Drawing.Point(240, 26);
+            this.lbl_playerTurn.Location = new System.Drawing.Point(100, 35);
             this.lbl_playerTurn.Name = "lbl_playerTurn";
-            this.lbl_playerTurn.Size = new System.Drawing.Size(106, 37);
+            this.lbl_playerTurn.Size = new System.Drawing.Size(181, 37);
             this.lbl_playerTurn.TabIndex = 60;
-            this.lbl_playerTurn.Text = "label1";
+            this.lbl_playerTurn.Text = "Turn Label";
+            this.lbl_playerTurn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lbl_win
+            // 
+            this.lbl_win.AutoSize = true;
+            this.lbl_win.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_win.Location = new System.Drawing.Point(539, 199);
+            this.lbl_win.Name = "lbl_win";
+            this.lbl_win.Size = new System.Drawing.Size(197, 37);
+            this.lbl_win.TabIndex = 61;
+            this.lbl_win.Text = "Win Display";
+            this.lbl_win.Visible = false;
             // 
             // Twoplayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lbl_win);
             this.Controls.Add(this.lbl_playerTurn);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.SP_56);
@@ -851,5 +865,6 @@
         private System.Windows.Forms.PictureBox SP_06;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lbl_playerTurn;
+        private System.Windows.Forms.Label lbl_win;
     }
 }
