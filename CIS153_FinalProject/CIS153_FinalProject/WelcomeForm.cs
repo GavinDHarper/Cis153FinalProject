@@ -41,5 +41,10 @@ namespace CIS153_FinalProject
             statistics.Show();
             this.Hide();
         }
+
+        private void btn_Exit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

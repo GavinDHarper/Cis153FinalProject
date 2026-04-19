@@ -35,16 +35,17 @@ namespace CIS153_FinalProject
             player1.setName("Player 1");
             player1.setChip(redChip);
             player2.setId(2);
-            player1.setName("Player 2");
+            player2.setName("Player 2");
             player2.setChip(blueChip);
+
             playerTurn = player1.getId();
             lbl_playerTurn.Text = player1.getName() + "'s Turn";
         }
 
         private void btn_Exit_Click(object sender, EventArgs e)
         {
-            WCForm.Show();
             this.Close();
+            Application.Exit();
         }
         private void btn_placeChip(object sender, EventArgs e)
         {
@@ -127,6 +128,9 @@ namespace CIS153_FinalProject
                 pictureBox1.Image = player1.getChipImage();
                 lbl_playerTurn.Text = player1.getName() + "'s Turn";
             }
+
+
+            //This is giving me a headache lol
             gameBoard.reverseBoard();
             initializeDisplay();
         }

@@ -33,6 +33,7 @@
             this.btn_Statistics = new System.Windows.Forms.Button();
             this.lbl_logo1 = new System.Windows.Forms.Label();
             this.lbl_logo2 = new System.Windows.Forms.Label();
+            this.btn_Exit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_Singleplayer
@@ -71,24 +72,35 @@
             // lbl_logo1
             // 
             this.lbl_logo1.AutoSize = true;
-            this.lbl_logo1.Font = new System.Drawing.Font("Magneto", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_logo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_logo1.ForeColor = System.Drawing.Color.Red;
             this.lbl_logo1.Location = new System.Drawing.Point(12, 26);
             this.lbl_logo1.Name = "lbl_logo1";
-            this.lbl_logo1.Size = new System.Drawing.Size(192, 48);
+            this.lbl_logo1.Size = new System.Drawing.Size(177, 46);
             this.lbl_logo1.TabIndex = 3;
             this.lbl_logo1.Text = "Connect";
             // 
             // lbl_logo2
             // 
             this.lbl_logo2.AutoSize = true;
-            this.lbl_logo2.Font = new System.Drawing.Font("Magneto", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_logo2.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_logo2.ForeColor = System.Drawing.Color.Gold;
             this.lbl_logo2.Location = new System.Drawing.Point(200, 26);
             this.lbl_logo2.Name = "lbl_logo2";
-            this.lbl_logo2.Size = new System.Drawing.Size(125, 48);
+            this.lbl_logo2.Size = new System.Drawing.Size(106, 46);
             this.lbl_logo2.TabIndex = 4;
             this.lbl_logo2.Text = "Four";
+            // 
+            // btn_Exit
+            // 
+            this.btn_Exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Exit.Location = new System.Drawing.Point(47, 291);
+            this.btn_Exit.Name = "btn_Exit";
+            this.btn_Exit.Size = new System.Drawing.Size(141, 76);
+            this.btn_Exit.TabIndex = 5;
+            this.btn_Exit.Text = "Exit Program";
+            this.btn_Exit.UseVisualStyleBackColor = true;
+            this.btn_Exit.Click += new System.EventHandler(this.btn_Exit_Click);
             // 
             // WelcomeForm
             // 
@@ -96,6 +108,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_Exit);
             this.Controls.Add(this.lbl_logo2);
             this.Controls.Add(this.lbl_logo1);
             this.Controls.Add(this.btn_Statistics);
@@ -116,6 +129,7 @@
         private System.Windows.Forms.Button btn_Statistics;
         private System.Windows.Forms.Label lbl_logo1;
         private System.Windows.Forms.Label lbl_logo2;
+        private System.Windows.Forms.Button btn_Exit;
     }
 }
 

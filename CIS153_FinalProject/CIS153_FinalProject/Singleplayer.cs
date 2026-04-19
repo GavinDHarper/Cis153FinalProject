@@ -26,8 +26,8 @@ namespace CIS153_FinalProject
 
         private void btn_Exit_Click(object sender, EventArgs e)
         {
-            WCForm.Show();
             this.Close();
+            Application.Exit();
         }
     }
 }

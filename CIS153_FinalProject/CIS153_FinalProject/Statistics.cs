@@ -29,10 +29,13 @@ namespace CIS153_FinalProject
 
         private void btn_Exit_Click(object sender, EventArgs e)
         {
+            Application.Exit();
+        }
+        private void btn_ReturnToWelcome_Click(object sender, EventArgs e)
+        {
             WCForm.Show();
             this.Close();
         }
-
         public void readDisplayStats()
         {
 
