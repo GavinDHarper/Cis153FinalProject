@@ -469,7 +469,7 @@ namespace CIS153_FinalProject
                     return true;
                 }
             }
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 7; i++)
             {
                 if (checkWinCol(i, playerId))
                 {
