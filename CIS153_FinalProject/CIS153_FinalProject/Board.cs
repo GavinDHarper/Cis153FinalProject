@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -129,6 +130,41 @@ namespace CIS153_FinalProject
                 }
                 Console.WriteLine();
             }
+        }
+
+        public bool checkDirection(int row, int col, int dRow, int dCol, Chip chip)
+        {
+            //this function calls in one direction only, it'll need to be called more than once
+            //to check everything
+
+            //we know there's at least one chip, so start at 1 not 0
+            int count = 1;
+
+            //dRow and dCol are like instructions.
+            //(0, 1) to move one cell right
+            //(1, 0) to move one cell down
+            //(assuming top left cell is (0,0)
+            int r = row + dRow;
+            int c = col + dCol;
+
+            //first bit makes sure we stay within the board's confines by not going past rows or cols
+            //second bit checks if there's a chip, if the spot is empty, stop checking
+            //las bit checks if they're the same color, I opted to check like this since we don't
+            //really keep track of the chips any other way
+            while (r >= 0 && r < rows && c >= 0 && c < cols && board[r, c].getChip() != null && board[r, c].getChip().getColor() == chip.getColor())
+            {
+                count++;
+                if (count == 4)
+                {
+                    return true;
+                }
+                else
+                { 
+                    r += dRow;
+                    c += dCol;
+                }
+            }
+            return false;
         }
     }
 }

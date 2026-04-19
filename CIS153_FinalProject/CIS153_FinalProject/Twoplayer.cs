@@ -131,7 +131,7 @@ namespace CIS153_FinalProject
 
 
             //This is giving me a headache lol
-            gameBoard.reverseBoard();
+            //gameBoard.reverseBoard();
             initializeDisplay();
         }
     }
