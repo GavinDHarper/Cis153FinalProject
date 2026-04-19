@@ -49,6 +49,7 @@
     <Compile Include="Board.cs" />
     <Compile Include="Cell.cs" />
     <Compile Include="Chip.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Statistics.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +115,8 @@
     <Content Include="GameStats.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\connect4chipIconBLUE.png" />
+    <Content Include="Resources\emptyCell.png" />
     <None Include="Resources\connect4chipIconRED.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

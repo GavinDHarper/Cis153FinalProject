@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace CIS153_FinalProject
         private int col;
         private char character;
         private char openSpace;
-
+        private Chip chip;
         public PictureBox pictureBox; // object not var
         
         //--------------------------------------
@@ -35,6 +36,10 @@ namespace CIS153_FinalProject
         {
             openSpace = o;
         }
+        public void setChip(Chip c)
+        { 
+            chip = c;
+        }
         //--------------------------------------
         //          Getters
         //--------------------------------------
@@ -54,6 +59,26 @@ namespace CIS153_FinalProject
         {
             return openSpace;
         }
+        public Chip getChip()
+        {
+            return chip;
+        }
+        public Image getChipImage()
+        {
+            if (chip != null)
+            {
+                return this.chip.getImage();
+            }
+            else
+            {
+                return Image.FromFile("../../Resources/emptyCell.png");
+            }
+        }
+        public Color getChipColor()
+        {
+            return this.chip.getColor();
+        }
+
         //--------------------------------------
         //          Constructors
         //--------------------------------------
@@ -79,6 +104,17 @@ namespace CIS153_FinalProject
             else
             {
                 return false;
+            }
+        }
+        public bool hasChip() //Returns true if cell contains a chip of any kind
+        {
+            if (chip == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }
