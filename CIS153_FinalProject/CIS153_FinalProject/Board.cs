@@ -237,225 +237,62 @@ namespace CIS153_FinalProject
 
         public bool checkWinDiagonal(int playerId)
         {
-            int chipCount = 0;
-            //============================================
-            //Player 1 win conditions
-            //============================================
-            //---------------------------------
-            //4 length diagonal win conditions
-            //---------------------------------
+            int chipCount;
+            Player player;
+            bool gameWon = false;
             if (playerId == player1.getId())
             {
-                //diagonal win condition from cell 2,0 to 5,3
-                for (int i = 0; i < 4; i++)
-                {
-                    if (board[(2 + i), (i)].getChip() == player1.getChip())
-                    {
-                        chipCount++;
-                    }
-                    else 
-                    {
-                        chipCount = 0;
-                    }
-                    if (chipCount >= 4)
-                    {
-                        return true;
-                    }
-                }
-                //diagonal win condition from cell 0,3 - 3,6
-                for (int i = 0; i < 4; i++)
-                {
-                    if (board[(i), (3 + i)].getChip() == player1.getChip())
-                    {
-                        chipCount++;
-                    }
-                    else
-                    {
-                        chipCount = 0;
-                    }
-                    if (chipCount >= 4)
-                    {
-                        return true;
-                    }
-                }
-                //---------------------------------
-                //5 length diagonal win conditions
-                //---------------------------------
-                //diagonal win condition from cell 1,0 to 5,4
-                for (int i = 0; i < 5; i++)
-                {
-                    if (board[(1 + i), (i)].getChip() == player1.getChip())
-                    {
-                        chipCount++;
-                    }
-                    else
-                    {
-                        chipCount = 0;
-                    }
-                    if (chipCount >= 4)
-                    {
-                        return true;
-                    }
-                }
-                //diagonal win condition from cell 0,2 to 4,6
-                for (int i = 0; i < 5; i++)
-                {
-                    if (board[(i), (2 + i)].getChip() == player1.getChip())
-                    {
-                        chipCount++;
-                    }
-                    else
-                    {
-                        chipCount = 0;
-                    }
-                    if (chipCount >= 4)
-                    {
-                        return true;
-                    }
-                }
-                //---------------------------------
-                //6 length diagonal win conditions
-                //---------------------------------
-                //diagonal win condition from cell 0,0 to 5,5
-                for (int i = 0; i < 6; i++)
-                {
-                    if (board[(i), (i)].getChip() == player1.getChip())
-                    {
-                        chipCount++;
-                    }
-                    else
-                    {
-                        chipCount = 0;
-                    }
-                    if (chipCount >= 4)
-                    {
-                        return true;
-                    }
-                }
-                //diagonal win condition from cell 0,1 to 5,6
-                for (int i = 0; i < 6; i++)
-                {
-                    if (board[(i), (1 + i)].getChip() == player1.getChip())
-                    {
-                        chipCount++;
-                    }
-                    else
-                    {
-                        chipCount = 0;
-                    }
-                    if (chipCount >= 4)
-                    {
-                        return true;
-                    }
-                }
+                player = player1;
             }
-            //============================================
-            //Player 2 win conditions
-            //============================================
-            if (playerId == player2.getId())
+            else
             {
-                //diagonal win condition from cell 2,0 to 5,3
-                for (int i = 0; i < 4; i++)
+                player = player2;
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j <= (rows - 4); j++)
                 {
-                    if (board[(2 + i), (i)].getChip() == player2.getChip())
+                    chipCount = 0;
+                    for (int k = 0; k < (rows - j); k++)
                     {
-                        chipCount++;
-                    }
-                    else
-                    {
-                        chipCount = 0;
-                    }
-                    if (chipCount >= 4)
-                    {
-                        return true;
+                        if ((board[j + k, k].getChip() == player.getChip()))
+                        {
+                            chipCount++;
+                        }
+                        else
+                        {
+                            chipCount = 0;
+                        }
+                        if (chipCount >= 4)
+                        {
+                            gameWon = true;
+                        }
                     }
                 }
-                //diagonal win condition from cell 0,3 - 3,6
-                for (int i = 0; i < 4; i++)
+                for (int j = 1; j <= (cols - 4); j++)
                 {
-                    if (board[(i), (3 + i)].getChip() == player2.getChip())
+                    chipCount = 0;
+                    for (int k = 0; k < (cols - j); k++)
                     {
-                        chipCount++;
-                    }
-                    else
-                    {
-                        chipCount = 0;
-                    }
-                    if (chipCount >= 4)
-                    {
-                        return true;
+                        if ((board[k, j + k].getChip() == player.getChip()))
+                        {
+                            chipCount++;
+                        }
+                        else
+                        {
+                            chipCount = 0;
+                        }
+                        if (chipCount >= 4)
+                        {
+                            gameWon = true;
+                        }
                     }
                 }
-                //---------------------------------
-                //5 length diagonal win conditions
-                //---------------------------------
-                //diagonal win condition from cell 1,0 to 5,4
-                for (int i = 0; i < 5; i++)
-                {
-                    if (board[(1 + i), (i)].getChip() == player2.getChip())
-                    {
-                        chipCount++;
-                    }
-                    else
-                    {
-                        chipCount = 0;
-                    }
-                    if (chipCount >= 4)
-                    {
-                        return true;
-                    }
-                }
-                //diagonal win condition from cell 0,2 to 4,6
-                for (int i = 0; i < 5; i++)
-                {
-                    if (board[(i), (2 + i)].getChip() == player2.getChip())
-                    {
-                        chipCount++;
-                    }
-                    else
-                    {
-                        chipCount = 0;
-                    }
-                    if (chipCount >= 4)
-                    {
-                        return true;
-                    }
-                }
-                //---------------------------------
-                //6 length diagonal win conditions
-                //---------------------------------
-                //diagonal win condition from cell 0,0 to 5,5
-                for (int i = 0; i < 6; i++)
-                {
-                    if (board[(i), (i)].getChip() == player2.getChip())
-                    {
-                        chipCount++;
-                    }
-                    else
-                    {
-                        chipCount = 0;
-                    }
-                    if (chipCount >= 4)
-                    {
-                        return true;
-                    }
-                }
-                //diagonal win condition from cell 0,1 to 5,6
-                for (int i = 0; i < 6; i++)
-                {
-                    if (board[(i), (1 + i)].getChip() == player2.getChip())
-                    {
-                        chipCount++;
-                    }
-                    else
-                    {
-                        chipCount = 0;
-                    }
-                    if (chipCount >= 4)
-                    {
-                        return true;
-                    }
-                }
+                reverseBoard();
+            }
+            if (gameWon)
+            {
+                return true;
             }
             return false;
         }
@@ -480,13 +317,6 @@ namespace CIS153_FinalProject
             {
                 return true;
             }
-            reverseBoard();
-            if (checkWinDiagonal(playerId))
-            {
-                reverseBoard();
-                return true;
-            }
-            reverseBoard();
             return false;
         }
 
