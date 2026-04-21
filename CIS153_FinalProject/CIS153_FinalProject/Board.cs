@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
@@ -92,7 +93,16 @@ namespace CIS153_FinalProject
                 }
             }
         }
-
+        public Board(int rows, int cols, char openSpace, Player player1, Player player2, Cell[,] board)
+        {
+            this.rows = rows;
+            this.cols = cols;
+            this.openSpace = openSpace;
+            this.player1 = player1;
+            this.player2 = player2;
+            this.board = board;
+            
+        }
         //--------------------------------------
         //          Functions
         //--------------------------------------
@@ -353,6 +363,26 @@ namespace CIS153_FinalProject
                 }
             }
             return false;
+        }
+
+        public object Clone()
+        {
+            //Cell[,] tempCell = new Cell[7,6];
+            //for (int i = 0; i < 7; i++)
+            //{
+            //    for (int j = 0; j < 6; j++)
+            //        tempCell[i,j] = (Cell)board[i,j].clone();
+            //}
+            return new Board()
+            {
+                rows = rows,
+                cols = cols,
+                player1 = (Player)player1.clone(),
+                player2 = (Player)player2.clone(),
+                board = (Cell[,])board.Clone(),
+            };
+
+
         }
     }
 }

@@ -66,5 +66,9 @@ namespace CIS153_FinalProject
         //--------------------------------------
         //          Functions
         //--------------------------------------
+        public object clone()
+        {
+            return new Player(id, name, chip);
+        }
     }
 }

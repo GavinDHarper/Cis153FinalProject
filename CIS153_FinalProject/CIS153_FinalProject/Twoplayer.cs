@@ -72,9 +72,10 @@ namespace CIS153_FinalProject
                         lbl_win.ForeColor = gameBoard.getPlayer2().getChipColor();
                         lbl_win.Visible = true;
                     }
-
+                    initializeDisplay();
                 }
-                nextTurn();
+                else
+                    nextTurn();
             }
         }
 
@@ -146,7 +147,7 @@ namespace CIS153_FinalProject
 
             //This is giving me a headache lol
             //gameBoard.reverseBoard();
-            initializeDisplay();
+            initializeDisplay(); 
         }
     }
 }
