@@ -42,6 +42,7 @@
             this.lbl_stats_cpuPercent = new System.Windows.Forms.Label();
             this.lbl_stats_cpuPNum = new System.Windows.Forms.Label();
             this.btn_ReturnToWelcome = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_Exit
@@ -59,7 +60,7 @@
             // 
             this.lbl_stats_playerWins.AutoSize = true;
             this.lbl_stats_playerWins.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_stats_playerWins.Location = new System.Drawing.Point(12, 91);
+            this.lbl_stats_playerWins.Location = new System.Drawing.Point(12, 149);
             this.lbl_stats_playerWins.Name = "lbl_stats_playerWins";
             this.lbl_stats_playerWins.Size = new System.Drawing.Size(166, 31);
             this.lbl_stats_playerWins.TabIndex = 5;
@@ -69,7 +70,7 @@
             // 
             this.lbl_stats_numPWins.AutoSize = true;
             this.lbl_stats_numPWins.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_stats_numPWins.Location = new System.Drawing.Point(184, 91);
+            this.lbl_stats_numPWins.Location = new System.Drawing.Point(226, 149);
             this.lbl_stats_numPWins.Name = "lbl_stats_numPWins";
             this.lbl_stats_numPWins.Size = new System.Drawing.Size(86, 31);
             this.lbl_stats_numPWins.TabIndex = 6;
@@ -79,7 +80,7 @@
             // 
             this.lbl_stats_cpuWins.AutoSize = true;
             this.lbl_stats_cpuWins.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_stats_cpuWins.Location = new System.Drawing.Point(12, 142);
+            this.lbl_stats_cpuWins.Location = new System.Drawing.Point(12, 200);
             this.lbl_stats_cpuWins.Name = "lbl_stats_cpuWins";
             this.lbl_stats_cpuWins.Size = new System.Drawing.Size(208, 31);
             this.lbl_stats_cpuWins.TabIndex = 7;
@@ -89,7 +90,7 @@
             // 
             this.lbl_stats_numCpuWins.AutoSize = true;
             this.lbl_stats_numCpuWins.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_stats_numCpuWins.Location = new System.Drawing.Point(226, 142);
+            this.lbl_stats_numCpuWins.Location = new System.Drawing.Point(226, 200);
             this.lbl_stats_numCpuWins.Name = "lbl_stats_numCpuWins";
             this.lbl_stats_numCpuWins.Size = new System.Drawing.Size(86, 31);
             this.lbl_stats_numCpuWins.TabIndex = 8;
@@ -99,7 +100,7 @@
             // 
             this.lbl_stats_totalGames.AutoSize = true;
             this.lbl_stats_totalGames.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_stats_totalGames.Location = new System.Drawing.Point(12, 44);
+            this.lbl_stats_totalGames.Location = new System.Drawing.Point(12, 102);
             this.lbl_stats_totalGames.Name = "lbl_stats_totalGames";
             this.lbl_stats_totalGames.Size = new System.Drawing.Size(199, 31);
             this.lbl_stats_totalGames.TabIndex = 9;
@@ -109,7 +110,7 @@
             // 
             this.lbl_stats_ties.AutoSize = true;
             this.lbl_stats_ties.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_stats_ties.Location = new System.Drawing.Point(12, 192);
+            this.lbl_stats_ties.Location = new System.Drawing.Point(12, 250);
             this.lbl_stats_ties.Name = "lbl_stats_ties";
             this.lbl_stats_ties.Size = new System.Drawing.Size(81, 31);
             this.lbl_stats_ties.TabIndex = 10;
@@ -119,7 +120,7 @@
             // 
             this.lbl_stats_numGames.AutoSize = true;
             this.lbl_stats_numGames.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_stats_numGames.Location = new System.Drawing.Point(217, 44);
+            this.lbl_stats_numGames.Location = new System.Drawing.Point(226, 102);
             this.lbl_stats_numGames.Name = "lbl_stats_numGames";
             this.lbl_stats_numGames.Size = new System.Drawing.Size(86, 31);
             this.lbl_stats_numGames.TabIndex = 11;
@@ -129,7 +130,7 @@
             // 
             this.lbl_stats_numTies.AutoSize = true;
             this.lbl_stats_numTies.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_stats_numTies.Location = new System.Drawing.Point(99, 192);
+            this.lbl_stats_numTies.Location = new System.Drawing.Point(226, 250);
             this.lbl_stats_numTies.Name = "lbl_stats_numTies";
             this.lbl_stats_numTies.Size = new System.Drawing.Size(86, 31);
             this.lbl_stats_numTies.TabIndex = 12;
@@ -139,7 +140,7 @@
             // 
             this.lbl_stats_playerPercent.AutoSize = true;
             this.lbl_stats_playerPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_stats_playerPercent.Location = new System.Drawing.Point(381, 91);
+            this.lbl_stats_playerPercent.Location = new System.Drawing.Point(347, 102);
             this.lbl_stats_playerPercent.Name = "lbl_stats_playerPercent";
             this.lbl_stats_playerPercent.Size = new System.Drawing.Size(317, 31);
             this.lbl_stats_playerPercent.TabIndex = 13;
@@ -149,7 +150,7 @@
             // 
             this.lbl_stats_playerPNum.AutoSize = true;
             this.lbl_stats_playerPNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_stats_playerPNum.Location = new System.Drawing.Point(702, 91);
+            this.lbl_stats_playerPNum.Location = new System.Drawing.Point(691, 102);
             this.lbl_stats_playerPNum.Name = "lbl_stats_playerPNum";
             this.lbl_stats_playerPNum.Size = new System.Drawing.Size(86, 31);
             this.lbl_stats_playerPNum.TabIndex = 14;
@@ -159,7 +160,7 @@
             // 
             this.lbl_stats_cpuPercent.AutoSize = true;
             this.lbl_stats_cpuPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_stats_cpuPercent.Location = new System.Drawing.Point(358, 142);
+            this.lbl_stats_cpuPercent.Location = new System.Drawing.Point(347, 149);
             this.lbl_stats_cpuPercent.Name = "lbl_stats_cpuPercent";
             this.lbl_stats_cpuPercent.Size = new System.Drawing.Size(340, 31);
             this.lbl_stats_cpuPercent.TabIndex = 15;
@@ -169,7 +170,7 @@
             // 
             this.lbl_stats_cpuPNum.AutoSize = true;
             this.lbl_stats_cpuPNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_stats_cpuPNum.Location = new System.Drawing.Point(702, 142);
+            this.lbl_stats_cpuPNum.Location = new System.Drawing.Point(691, 149);
             this.lbl_stats_cpuPNum.Name = "lbl_stats_cpuPNum";
             this.lbl_stats_cpuPNum.Size = new System.Drawing.Size(86, 31);
             this.lbl_stats_cpuPNum.TabIndex = 16;
@@ -186,11 +187,22 @@
             this.btn_ReturnToWelcome.UseVisualStyleBackColor = true;
             this.btn_ReturnToWelcome.Click += new System.EventHandler(this.btn_ReturnToWelcome_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(280, 54);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Game Stats";
+            // 
             // Statistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_ReturnToWelcome);
             this.Controls.Add(this.lbl_stats_cpuPNum);
             this.Controls.Add(this.lbl_stats_cpuPercent);
@@ -228,5 +240,6 @@
         private System.Windows.Forms.Label lbl_stats_cpuPercent;
         private System.Windows.Forms.Label lbl_stats_cpuPNum;
         private System.Windows.Forms.Button btn_ReturnToWelcome;
+        private System.Windows.Forms.Label label1;
     }
 }

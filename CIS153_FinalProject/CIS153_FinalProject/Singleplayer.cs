@@ -145,5 +145,11 @@ namespace CIS153_FinalProject
             SP_56.Image = gameBoard.board[5, 6].getChipImage();
             gameBoard.displayBoardConsole();
         }
+
+        private void btn_back_Click(object sender, EventArgs e)
+        {
+            WCForm.Show();
+            this.Close();
+        }
     }
 }

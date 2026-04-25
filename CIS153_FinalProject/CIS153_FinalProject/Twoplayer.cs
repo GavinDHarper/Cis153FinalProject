@@ -154,5 +154,11 @@ namespace CIS153_FinalProject
             //gameBoard.reverseBoard();
             initializeDisplay(); 
         }
+
+        private void btn_back_Click(object sender, EventArgs e)
+        {
+            WCForm.Show();
+            this.Close();
+        }
     }
 }
