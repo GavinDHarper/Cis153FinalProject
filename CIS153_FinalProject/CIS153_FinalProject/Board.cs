@@ -125,6 +125,20 @@ namespace CIS153_FinalProject
             }
             return false;
         }
+        public bool IsGameboardFull()
+        {
+            for (int col = 0; col < 7; col++)
+            {
+                for (int row = 0; row < 6; row++)
+                {
+                    if (board[row,col].isOpen())
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
         public void reverseBoard()
         //reverses board around so that it looks like how
         //it would look from the second players perspective

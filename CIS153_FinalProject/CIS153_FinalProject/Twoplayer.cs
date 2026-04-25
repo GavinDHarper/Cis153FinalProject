@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics.Eventing.Reader;
 
 namespace CIS153_FinalProject
 {
@@ -79,11 +80,22 @@ namespace CIS153_FinalProject
                     }
                     initializeDisplay();
                 }
+                else if (gameBoard.IsGameboardFull())
+                {
+                    lbl_playerTurn.Visible = false;
+                    gameOver = true;
+                    lbl_win.Text = "It's a Tie!";
+                    lbl_win.ForeColor = Color.DarkSlateGray;
+                    lbl_win.Visible = true;
+                    initializeDisplay();
+                }
+
                 else
                     nextTurn();
             }
         }
 
+        
         private void initializeDisplay()
         {
             SP_00.Image = gameBoard.board[0, 0].getChipImage();
