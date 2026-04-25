@@ -107,7 +107,7 @@ namespace CIS153_FinalProject
         //          Functions
         //--------------------------------------
 
-        public void placePiece(int col, Player player)
+        public bool placePiece(int col, Player player)
          //'user' is to signify which user is placing the piece
          //doesn't have to be a char, coul be int 1 & 2
          //or char 'Y' & 'R' (yellow/red), anything works
@@ -120,9 +120,10 @@ namespace CIS153_FinalProject
                 {
                     board[row, col].setCharacter((char)player.getId());
                     board[row, col].setChip(player.getChip());
-                    return;
+                    return true;
                 }
             }
+            return false;
         }
         public void reverseBoard()
         //reverses board around so that it looks like how

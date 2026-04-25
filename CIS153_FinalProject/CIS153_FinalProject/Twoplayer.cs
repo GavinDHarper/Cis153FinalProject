@@ -47,13 +47,18 @@ namespace CIS153_FinalProject
                 if (btn != null)
                 {
                     col = Int32.Parse(btn.Text) - 1;
+                    bool placed;
                     if (playerTurn == gameBoard.getPlayer1().getId())
                     {
-                        gameBoard.placePiece(col, gameBoard.getPlayer1());
+                        placed = gameBoard.placePiece(col, gameBoard.getPlayer1());
                     }
                     else
                     {
-                        gameBoard.placePiece(col, gameBoard.getPlayer2());
+                        placed = gameBoard.placePiece(col, gameBoard.getPlayer2());
+                    }
+                    if (!placed)
+                    {
+                        return;
                     }
                 }
                 if (gameBoard.checkWin(playerTurn))
