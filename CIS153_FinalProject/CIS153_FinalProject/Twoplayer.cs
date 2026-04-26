@@ -39,6 +39,98 @@ namespace CIS153_FinalProject
             this.Close();
             Application.Exit();
         }
+        private void SP_placeChip(object sender, MouseEventArgs e)
+        {
+            int col;
+            PictureBox pic = sender as PictureBox;
+            if (gameOver == false)
+            {
+                col = Int32.Parse(pic.Tag.ToString());
+                bool placed;
+                if (playerTurn == gameBoard.getPlayer1().getId())
+                {
+                    placed = gameBoard.placePiece(col, gameBoard.getPlayer1());
+                }
+                else
+                {
+                    placed = gameBoard.placePiece(col, gameBoard.getPlayer2());
+                }
+                if (!placed)
+                {
+                    return;
+                }
+                if (gameBoard.checkWin(playerTurn))
+                {
+                    lbl_playerTurn.Visible = false;
+                    gameOver = true;
+                    if (playerTurn == gameBoard.getPlayer1().getId())
+                    {
+                        lbl_win.Text = gameBoard.getPlayer1().getName() + " Wins!";
+                        lbl_win.ForeColor = gameBoard.getPlayer1().getChipColor();
+                        lbl_win.Visible = true;
+                    }
+                    else
+                    {
+                        lbl_win.Text = gameBoard.getPlayer2().getName() + " Wins!";
+                        lbl_win.ForeColor = gameBoard.getPlayer2().getChipColor();
+                        lbl_win.Visible = true;
+                    }
+                    initializeDisplay();
+                }
+                else if (gameBoard.IsGameboardFull())
+                {
+                    lbl_playerTurn.Visible = false;
+                    gameOver = true;
+                    lbl_win.Text = "It's a Tie!";
+                    lbl_win.ForeColor = Color.DarkSlateGray;
+                    lbl_win.Visible = true;
+                    initializeDisplay();
+                }
+                else nextTurn();
+            }
+        }
+        private void SP_displayGhostPiece(object sender, EventArgs e)
+        {
+            int col;
+            PictureBox pic = sender as PictureBox;
+            col = Int32.Parse(pic.Tag.ToString());
+            for (int row = 0; row < gameBoard.getRows(); row++)
+            {
+                if (gameBoard.board[row, col].isOpen())
+                {
+                    string picBoxPath = "SP_" + row.ToString() + col.ToString();
+                    //Console.WriteLine(picBoxPath);
+                    PictureBox picBox = (PictureBox)this.Controls[picBoxPath];
+                    {
+                        if (playerTurn == gameBoard.getPlayer1().getId())
+                        {
+                            picBox.Image = Image.FromFile("../../Resources/connect4chipGhostRED.png");
+                            return;
+                        }
+                        else
+                        {
+                            picBox.Image = Image.FromFile("../../Resources/connect4chipGhostBLUE.png");
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+        private void SP_removeGhostPiece(object sender, EventArgs e)
+        {
+            int col;
+            PictureBox pic = sender as PictureBox;
+            col = Int32.Parse(pic.Tag.ToString());
+            for (int row = 0; row < gameBoard.getRows(); row++)
+            {
+                string picBoxPath = "SP_" + row.ToString() + col.ToString();
+                PictureBox picBox = (PictureBox)this.Controls[picBoxPath];
+                if (gameBoard.board[row, col].isOpen())
+                {
+                    picBox.Image = Image.FromFile("../../Resources/emptyCell.png");
+                }
+            }
+        }
         private void btn_placeChip(object sender, EventArgs e)
         {
             int col;
@@ -166,7 +258,6 @@ namespace CIS153_FinalProject
             //gameBoard.reverseBoard();
             initializeDisplay(); 
         }
-
         private void btn_back_Click(object sender, EventArgs e)
         {
             WCForm.Show();

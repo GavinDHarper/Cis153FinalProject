@@ -78,10 +78,10 @@
             this.SP_26 = new System.Windows.Forms.PictureBox();
             this.SP_16 = new System.Windows.Forms.PictureBox();
             this.SP_06 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbl_playerTurn = new System.Windows.Forms.Label();
             this.lbl_win = new System.Windows.Forms.Label();
             this.btn_back = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.SP_00)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_20)).BeginInit();
@@ -218,6 +218,10 @@
             this.SP_00.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_00.TabIndex = 11;
             this.SP_00.TabStop = false;
+            this.SP_00.Tag = "0";
+            this.SP_00.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_00.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_00.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_10
             // 
@@ -229,6 +233,10 @@
             this.SP_10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_10.TabIndex = 12;
             this.SP_10.TabStop = false;
+            this.SP_10.Tag = "0";
+            this.SP_10.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_10.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_10.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_20
             // 
@@ -240,6 +248,10 @@
             this.SP_20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_20.TabIndex = 13;
             this.SP_20.TabStop = false;
+            this.SP_20.Tag = "0";
+            this.SP_20.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_20.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_20.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_30
             // 
@@ -251,6 +263,10 @@
             this.SP_30.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_30.TabIndex = 14;
             this.SP_30.TabStop = false;
+            this.SP_30.Tag = "0";
+            this.SP_30.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_30.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_30.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_40
             // 
@@ -262,6 +278,10 @@
             this.SP_40.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_40.TabIndex = 15;
             this.SP_40.TabStop = false;
+            this.SP_40.Tag = "0";
+            this.SP_40.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_40.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_40.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_50
             // 
@@ -273,6 +293,10 @@
             this.SP_50.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_50.TabIndex = 16;
             this.SP_50.TabStop = false;
+            this.SP_50.Tag = "0";
+            this.SP_50.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_50.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_50.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_51
             // 
@@ -284,6 +308,10 @@
             this.SP_51.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_51.TabIndex = 23;
             this.SP_51.TabStop = false;
+            this.SP_51.Tag = "1";
+            this.SP_51.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_51.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_51.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_41
             // 
@@ -295,6 +323,10 @@
             this.SP_41.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_41.TabIndex = 22;
             this.SP_41.TabStop = false;
+            this.SP_41.Tag = "1";
+            this.SP_41.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_41.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_41.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_31
             // 
@@ -306,6 +338,10 @@
             this.SP_31.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_31.TabIndex = 21;
             this.SP_31.TabStop = false;
+            this.SP_31.Tag = "1";
+            this.SP_31.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_31.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_31.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_21
             // 
@@ -317,6 +353,10 @@
             this.SP_21.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_21.TabIndex = 20;
             this.SP_21.TabStop = false;
+            this.SP_21.Tag = "1";
+            this.SP_21.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_21.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_21.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_11
             // 
@@ -328,6 +368,10 @@
             this.SP_11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_11.TabIndex = 19;
             this.SP_11.TabStop = false;
+            this.SP_11.Tag = "1";
+            this.SP_11.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_11.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_11.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_01
             // 
@@ -339,6 +383,10 @@
             this.SP_01.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_01.TabIndex = 18;
             this.SP_01.TabStop = false;
+            this.SP_01.Tag = "1";
+            this.SP_01.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_01.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_01.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_52
             // 
@@ -350,6 +398,10 @@
             this.SP_52.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_52.TabIndex = 30;
             this.SP_52.TabStop = false;
+            this.SP_52.Tag = "2";
+            this.SP_52.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_52.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_52.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_42
             // 
@@ -361,6 +413,10 @@
             this.SP_42.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_42.TabIndex = 29;
             this.SP_42.TabStop = false;
+            this.SP_42.Tag = "2";
+            this.SP_42.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_42.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_42.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_32
             // 
@@ -372,6 +428,10 @@
             this.SP_32.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_32.TabIndex = 28;
             this.SP_32.TabStop = false;
+            this.SP_32.Tag = "2";
+            this.SP_32.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_32.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_32.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_22
             // 
@@ -383,6 +443,10 @@
             this.SP_22.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_22.TabIndex = 27;
             this.SP_22.TabStop = false;
+            this.SP_22.Tag = "2";
+            this.SP_22.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_22.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_22.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_12
             // 
@@ -394,6 +458,10 @@
             this.SP_12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_12.TabIndex = 26;
             this.SP_12.TabStop = false;
+            this.SP_12.Tag = "2";
+            this.SP_12.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_12.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_12.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_02
             // 
@@ -405,6 +473,10 @@
             this.SP_02.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_02.TabIndex = 25;
             this.SP_02.TabStop = false;
+            this.SP_02.Tag = "2";
+            this.SP_02.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_02.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_02.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_53
             // 
@@ -416,6 +488,10 @@
             this.SP_53.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_53.TabIndex = 37;
             this.SP_53.TabStop = false;
+            this.SP_53.Tag = "3";
+            this.SP_53.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_53.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_53.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_43
             // 
@@ -427,6 +503,10 @@
             this.SP_43.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_43.TabIndex = 36;
             this.SP_43.TabStop = false;
+            this.SP_43.Tag = "3";
+            this.SP_43.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_43.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_43.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_33
             // 
@@ -438,6 +518,10 @@
             this.SP_33.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_33.TabIndex = 35;
             this.SP_33.TabStop = false;
+            this.SP_33.Tag = "3";
+            this.SP_33.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_33.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_33.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_23
             // 
@@ -449,6 +533,10 @@
             this.SP_23.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_23.TabIndex = 34;
             this.SP_23.TabStop = false;
+            this.SP_23.Tag = "3";
+            this.SP_23.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_23.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_23.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_13
             // 
@@ -460,6 +548,10 @@
             this.SP_13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_13.TabIndex = 33;
             this.SP_13.TabStop = false;
+            this.SP_13.Tag = "3";
+            this.SP_13.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_13.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_13.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_03
             // 
@@ -471,6 +563,10 @@
             this.SP_03.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_03.TabIndex = 32;
             this.SP_03.TabStop = false;
+            this.SP_03.Tag = "3";
+            this.SP_03.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_03.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_03.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_54
             // 
@@ -482,6 +578,10 @@
             this.SP_54.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_54.TabIndex = 44;
             this.SP_54.TabStop = false;
+            this.SP_54.Tag = "4";
+            this.SP_54.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_54.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_54.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_44
             // 
@@ -493,6 +593,10 @@
             this.SP_44.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_44.TabIndex = 43;
             this.SP_44.TabStop = false;
+            this.SP_44.Tag = "4";
+            this.SP_44.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_44.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_44.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_34
             // 
@@ -504,6 +608,10 @@
             this.SP_34.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_34.TabIndex = 42;
             this.SP_34.TabStop = false;
+            this.SP_34.Tag = "4";
+            this.SP_34.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_34.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_34.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_24
             // 
@@ -515,6 +623,10 @@
             this.SP_24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_24.TabIndex = 41;
             this.SP_24.TabStop = false;
+            this.SP_24.Tag = "4";
+            this.SP_24.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_24.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_24.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_14
             // 
@@ -526,6 +638,10 @@
             this.SP_14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_14.TabIndex = 40;
             this.SP_14.TabStop = false;
+            this.SP_14.Tag = "4";
+            this.SP_14.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_14.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_14.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_04
             // 
@@ -537,6 +653,10 @@
             this.SP_04.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_04.TabIndex = 39;
             this.SP_04.TabStop = false;
+            this.SP_04.Tag = "4";
+            this.SP_04.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_04.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_04.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_55
             // 
@@ -548,6 +668,10 @@
             this.SP_55.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_55.TabIndex = 51;
             this.SP_55.TabStop = false;
+            this.SP_55.Tag = "5";
+            this.SP_55.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_55.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_55.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_45
             // 
@@ -559,6 +683,10 @@
             this.SP_45.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_45.TabIndex = 50;
             this.SP_45.TabStop = false;
+            this.SP_45.Tag = "5";
+            this.SP_45.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_45.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_45.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_35
             // 
@@ -570,6 +698,10 @@
             this.SP_35.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_35.TabIndex = 49;
             this.SP_35.TabStop = false;
+            this.SP_35.Tag = "5";
+            this.SP_35.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_35.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_35.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_25
             // 
@@ -581,6 +713,10 @@
             this.SP_25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_25.TabIndex = 48;
             this.SP_25.TabStop = false;
+            this.SP_25.Tag = "5";
+            this.SP_25.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_25.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_25.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_15
             // 
@@ -592,6 +728,10 @@
             this.SP_15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_15.TabIndex = 47;
             this.SP_15.TabStop = false;
+            this.SP_15.Tag = "5";
+            this.SP_15.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_15.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_15.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_05
             // 
@@ -603,6 +743,10 @@
             this.SP_05.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_05.TabIndex = 46;
             this.SP_05.TabStop = false;
+            this.SP_05.Tag = "5";
+            this.SP_05.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_05.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_05.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_56
             // 
@@ -614,6 +758,10 @@
             this.SP_56.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_56.TabIndex = 58;
             this.SP_56.TabStop = false;
+            this.SP_56.Tag = "6";
+            this.SP_56.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_56.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_56.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_46
             // 
@@ -625,6 +773,10 @@
             this.SP_46.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_46.TabIndex = 57;
             this.SP_46.TabStop = false;
+            this.SP_46.Tag = "6";
+            this.SP_46.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_46.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_46.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_36
             // 
@@ -636,6 +788,10 @@
             this.SP_36.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_36.TabIndex = 56;
             this.SP_36.TabStop = false;
+            this.SP_36.Tag = "6";
+            this.SP_36.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_36.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_36.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_26
             // 
@@ -647,6 +803,10 @@
             this.SP_26.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_26.TabIndex = 55;
             this.SP_26.TabStop = false;
+            this.SP_26.Tag = "6";
+            this.SP_26.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_26.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_26.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_16
             // 
@@ -658,6 +818,10 @@
             this.SP_16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_16.TabIndex = 54;
             this.SP_16.TabStop = false;
+            this.SP_16.Tag = "6";
+            this.SP_16.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_16.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_16.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // SP_06
             // 
@@ -669,18 +833,10 @@
             this.SP_06.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SP_06.TabIndex = 53;
             this.SP_06.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Image = global::CIS153_FinalProject.Properties.Resources.connect4chipIconRED;
-            this.pictureBox1.Location = new System.Drawing.Point(610, 35);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(111, 114);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 59;
-            this.pictureBox1.TabStop = false;
+            this.SP_06.Tag = "6";
+            this.SP_06.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SP_placeChip);
+            this.SP_06.MouseEnter += new System.EventHandler(this.SP_displayGhostPiece);
+            this.SP_06.MouseLeave += new System.EventHandler(this.SP_removeGhostPiece);
             // 
             // lbl_playerTurn
             // 
@@ -713,6 +869,18 @@
             this.btn_back.Text = "<--";
             this.btn_back.UseVisualStyleBackColor = true;
             this.btn_back.Click += new System.EventHandler(this.btn_back_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Image = global::CIS153_FinalProject.Properties.Resources.connect4chipIconRED;
+            this.pictureBox1.Location = new System.Drawing.Point(610, 35);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(111, 114);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 59;
+            this.pictureBox1.TabStop = false;
             // 
             // Twoplayer
             // 
@@ -774,6 +942,7 @@
             this.Controls.Add(this.btn_tp1);
             this.Controls.Add(this.btn_Exit);
             this.Name = "Twoplayer";
+            this.Tag = "3";
             this.Text = "TwoplayerForm";
             ((System.ComponentModel.ISupportInitialize)(this.SP_00)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_10)).EndInit();
@@ -875,9 +1044,9 @@
         private System.Windows.Forms.PictureBox SP_26;
         private System.Windows.Forms.PictureBox SP_16;
         private System.Windows.Forms.PictureBox SP_06;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lbl_playerTurn;
         private System.Windows.Forms.Label lbl_win;
         private System.Windows.Forms.Button btn_back;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
