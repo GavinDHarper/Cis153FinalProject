@@ -48,6 +48,7 @@ namespace CIS153_FinalProject
                 //to get the relative path. allows this to work on any computer
                 string filePath = Path.Combine(baseDirectoryPath, fileName);
                 StreamReader file = new StreamReader(filePath);
+                Debug.WriteLine(filePath);
                 string line = file.ReadLine();
 
                 string gamesPlayed;
@@ -79,8 +80,24 @@ namespace CIS153_FinalProject
                 ties = line;
 
                 //calculations
-                playerPercent = Math.Round(((Double.Parse(playerWins) / Double.Parse(gamesPlayed)) * 100), 2);
-                computerPercent = Math.Round(((Double.Parse(computerWins) / Double.Parse(gamesPlayed)) * 100), 2);
+                if (Double.Parse(gamesPlayed) > 0)
+                {
+                    playerPercent = Math.Round(((Double.Parse(playerWins) / Double.Parse(gamesPlayed)) * 100), 2);
+                }
+                else
+                {
+                    playerPercent = 0;
+                }
+                if (Double.Parse(gamesPlayed) > 0)
+                {
+                    computerPercent = Math.Round(((Double.Parse(computerWins) / Double.Parse(gamesPlayed)) * 100), 2);
+                }
+                else
+                { 
+                    computerPercent = 0; 
+                }
+
+                    
 
                 //display
                 lbl_stats_numGames.Text = gamesPlayed;
