@@ -87,6 +87,27 @@ namespace CIS153_FinalProject
                     initializeDisplay();
                 }
                 else nextTurn();
+                for (int row = 0; row < gameBoard.getRows(); row++)
+                {
+                    if (gameBoard.board[row, col].isOpen())
+                    {
+                        string picBoxPath = "SP_" + row.ToString() + col.ToString();
+                        //Console.WriteLine(picBoxPath);
+                        PictureBox picBox = (PictureBox)this.Controls[picBoxPath];
+                        {
+                            if (playerTurn == gameBoard.getPlayer1().getId())
+                            {
+                                picBox.Image = Image.FromFile("../../Resources/connect4chipGhostRED.png");
+                                return;
+                            }
+                            else
+                            {
+                                picBox.Image = Image.FromFile("../../Resources/connect4chipGhostBLUE.png");
+                                return;
+                            }
+                        }
+                    }
+                }
             }
         }
         private void SP_displayGhostPiece(object sender, EventArgs e)
