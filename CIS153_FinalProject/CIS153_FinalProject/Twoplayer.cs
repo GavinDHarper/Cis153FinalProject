@@ -110,7 +110,7 @@ namespace CIS153_FinalProject
                 }
             }
         }
-        private void SP_displayGhostPiece(object sender, EventArgs e)
+        private void SP_displayGhostChip(object sender, EventArgs e)
         {
             int col;
             PictureBox pic = sender as PictureBox;
@@ -137,7 +137,7 @@ namespace CIS153_FinalProject
                 }
             }
         }
-        private void SP_removeGhostPiece(object sender, EventArgs e)
+        private void SP_removeGhostChip(object sender, EventArgs e)
         {
             int col;
             PictureBox pic = sender as PictureBox;
@@ -152,62 +152,6 @@ namespace CIS153_FinalProject
                 }
             }
         }
-        private void btn_placeChip(object sender, EventArgs e)
-        {
-            int col;
-            Button btn = sender as Button;
-            if (gameOver == false)
-            {
-                if (btn != null)
-                {
-                    col = Int32.Parse(btn.Text) - 1;
-                    bool placed;
-                    if (playerTurn == gameBoard.getPlayer1().getId())
-                    {
-                        placed = gameBoard.placePiece(col, gameBoard.getPlayer1());
-                    }
-                    else
-                    {
-                        placed = gameBoard.placePiece(col, gameBoard.getPlayer2());
-                    }
-                    if (!placed)
-                    {
-                        return;
-                    }
-                }
-                if (gameBoard.checkWin(playerTurn))
-                {
-                    lbl_playerTurn.Visible = false;
-                    gameOver = true;
-                    if (playerTurn == gameBoard.getPlayer1().getId())
-                    {
-                        lbl_win.Text = gameBoard.getPlayer1().getName() + " Wins!";
-                        lbl_win.ForeColor = gameBoard.getPlayer1().getChipColor();
-                        lbl_win.Visible = true;
-                    }
-                    else
-                    {
-                        lbl_win.Text = gameBoard.getPlayer2().getName() + " Wins!";
-                        lbl_win.ForeColor = gameBoard.getPlayer2().getChipColor();
-                        lbl_win.Visible = true;
-                    }
-                    initializeDisplay();
-                }
-                else if (gameBoard.IsGameboardFull())
-                {
-                    lbl_playerTurn.Visible = false;
-                    gameOver = true;
-                    lbl_win.Text = "It's a Tie!";
-                    lbl_win.ForeColor = Color.DarkSlateGray;
-                    lbl_win.Visible = true;
-                    initializeDisplay();
-                }
-
-                else
-                    nextTurn();
-            }
-        }
-
         
         private void initializeDisplay()
         {

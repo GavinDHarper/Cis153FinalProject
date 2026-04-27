@@ -28,6 +28,9 @@ namespace CIS153_FinalProject
             InitializeComponent();
             initializeDisplay();
             WCForm = WCF;
+            playerTurn = gameBoard.getPlayer1().getId();
+            lbl_playerTurn.Text = gameBoard.getPlayer1().getName() + "'s Turn";
+            lbl_playerTurn.ForeColor = gameBoard.getPlayer1().getChipColor();
         }
 
         private void btn_Exit_Click(object sender, EventArgs e)
@@ -36,59 +39,74 @@ namespace CIS153_FinalProject
             Application.Exit();
         }
 
-        private void btn_placeChip(object sender, EventArgs e)
+        private void SP_placeChip(object sender, MouseEventArgs e)
         {
             int col;
-            Button btn = sender as Button;
-            
-            if (gameOver == false && playerTurn != gameBoard.getPlayer2().getId()) ////////bug fix this
+            PictureBox pic = sender as PictureBox;
+            if (gameOver == false)
             {
-                if (btn != null)
+                if (playerTurn != gameBoard.getPlayer2().getId()) ////////bug fix this
                 {
-                    col = Int32.Parse(btn.Text) - 1;
-                    if (gameBoard.board[5, col].isOpen()) //this is important becuase otherwize it will keep playing 
-                                                          //checks if top space is open if it isnt then you cant place any peice
+                    if (pic != null)
                     {
-                        if (playerTurn == gameBoard.getPlayer1().getId())
+                        col = Int32.Parse(pic.Tag.ToString());
+                        bool placed;
+                        if (gameBoard.board[5, col].isOpen()) //this is important becuase otherwize it will keep playing 
+                                                              //checks if top space is open if it isnt then you cant place any peice
                         {
-                            gameBoard.placePiece(col, gameBoard.getPlayer1());
-                        }
-                        else
-                        {
-                            gameBoard.placePiece(col, gameBoard.getPlayer2());
-                        }
-
-                        if (gameBoard.checkWin(playerTurn)) //moved inside so i can make it check if collum is full
-                        {
-                            lbl_playerTurn.Visible = false;
-                            gameOver = true;
                             if (playerTurn == gameBoard.getPlayer1().getId())
                             {
-                                lbl_win.Text = gameBoard.getPlayer1().getName() + " Wins!";
-                                lbl_win.ForeColor = gameBoard.getPlayer1().getChipColor();
-                                lbl_win.Visible = true;
-                                statUpdate(gameBoard.getPlayer1().getId());
+                                placed = gameBoard.placePiece(col, gameBoard.getPlayer1());
                             }
                             else
                             {
-                                lbl_win.Text = gameBoard.getPlayer2().getName() + " Wins!";
-                                lbl_win.ForeColor = gameBoard.getPlayer2().getChipColor();
-                                lbl_win.Visible = true;
-                                statUpdate(gameBoard.getPlayer2().getId());
+                                placed = gameBoard.placePiece(col, gameBoard.getPlayer2());
                             }
-                            initializeDisplay();
+                            if (!placed)
+                            {
+                                return;
+                            }
+                            if (gameBoard.checkWin(playerTurn)) //moved inside so i can make it check if collum is full
+                            {
+                                lbl_playerTurn.Visible = false;
+                                gameOver = true;
+                                if (playerTurn == gameBoard.getPlayer1().getId())
+                                {
+                                    lbl_win.Text = gameBoard.getPlayer1().getName() + " Wins!";
+                                    lbl_win.ForeColor = gameBoard.getPlayer1().getChipColor();
+                                    lbl_win.Visible = true;
+                                    statUpdate(gameBoard.getPlayer1().getId());
+                                }
+                                else
+                                {
+                                    lbl_win.Text = gameBoard.getPlayer2().getName() + " Wins!";
+                                    lbl_win.ForeColor = gameBoard.getPlayer2().getChipColor();
+                                    lbl_win.Visible = true;
+                                    statUpdate(gameBoard.getPlayer2().getId());
+                                }
+                                initializeDisplay();
+                            }
+                            else
+                                nextTurn();
                         }
-                        else
-                            nextTurn();
+
                     }
-                    
+
                 }
-                
-            }
-            else
-            {
-                bot.play(gameBoard);
-                nextTurn();
+                else
+                {
+                    bot.play(gameBoard);
+                    if (gameBoard.checkWin(2)) //moved inside so i can make it check if collum is full
+                    {
+                        lbl_playerTurn.Visible = false;
+                        gameOver = true;
+                        lbl_win.Text = gameBoard.getPlayer2().getName() + " Wins!";
+                        lbl_win.ForeColor = gameBoard.getPlayer2().getChipColor();
+                        lbl_win.Visible = true;
+                        statUpdate(gameBoard.getPlayer2().getId());
+                    }
+                    nextTurn();
+                }
             }
         }
         public void nextTurn()
@@ -238,5 +256,50 @@ namespace CIS153_FinalProject
                 Debug.WriteLine("ERROR. File Not Found");
             }
         }
+
+        private void SP_displayGhostChip(object sender, EventArgs e)
+        {
+            int col;
+            PictureBox pic = sender as PictureBox;
+            col = Int32.Parse(pic.Tag.ToString());
+            for (int row = 0; row < gameBoard.getRows(); row++)
+            {
+                if (gameBoard.board[row, col].isOpen())
+                {
+                    string picBoxPath = "SP_" + row.ToString() + col.ToString();
+                    //Console.WriteLine(picBoxPath);
+                    PictureBox picBox = (PictureBox)this.Controls[picBoxPath];
+                    {
+                        if (playerTurn == gameBoard.getPlayer1().getId())
+                        {
+                            picBox.Image = Image.FromFile("../../Resources/connect4chipGhostRED.png");
+                            return;
+                        }
+                        else
+                        {
+                            picBox.Image = Image.FromFile("../../Resources/connect4chipGhostBLUE.png");
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void SP_removeGhostChip(object sender, EventArgs e)
+        {
+            int col;
+            PictureBox pic = sender as PictureBox;
+            col = Int32.Parse(pic.Tag.ToString());
+            for (int row = 0; row < gameBoard.getRows(); row++)
+            {
+                string picBoxPath = "SP_" + row.ToString() + col.ToString();
+                PictureBox picBox = (PictureBox)this.Controls[picBoxPath];
+                if (gameBoard.board[row, col].isOpen())
+                {
+                    picBox.Image = Image.FromFile("../../Resources/emptyCell.png");
+                }
+            }
+        }
+
     }
 }
