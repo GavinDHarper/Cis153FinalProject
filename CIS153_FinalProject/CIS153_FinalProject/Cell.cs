@@ -86,14 +86,15 @@ namespace CIS153_FinalProject
             this.openSpace = openSpace;
             this.chip = new Chip("../../Resources/emptyCell.png",Color.White);
         }
-        public Cell(int row, int col, char openSpace, char character)
+        public Cell(int row, int col, char openSpace, char character, Chip chip)
         {
             this.row = row;
             this.col = col;
             this.character = openSpace;
             this.openSpace = openSpace;
             this.character = character;
-            this.chip = new Chip("../../Resources/emptyCell.png", Color.White);
+            this.chip = chip;
+            //this.chip = new Chip("../../Resources/emptyCell.png", Color.White);
         }
         //--------------------------------------
         //          Functions
@@ -122,7 +123,7 @@ namespace CIS153_FinalProject
         }
         public object clone()
         {
-            return new Cell(row, col, openSpace, character);
+            return new Cell(row, col, openSpace, character, chip);
         }
     }
 }

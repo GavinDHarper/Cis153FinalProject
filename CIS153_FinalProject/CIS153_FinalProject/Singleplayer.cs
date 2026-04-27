@@ -40,42 +40,55 @@ namespace CIS153_FinalProject
         {
             int col;
             Button btn = sender as Button;
-            if (gameOver == false)
+            
+            if (gameOver == false && playerTurn != gameBoard.getPlayer2().getId()) ////////bug fix this
             {
                 if (btn != null)
                 {
                     col = Int32.Parse(btn.Text) - 1;
-                    if (playerTurn == gameBoard.getPlayer1().getId())
+                    if (gameBoard.board[5, col].isOpen()) //this is important becuase otherwize it will keep playing 
+                                                          //checks if top space is open if it isnt then you cant place any peice
                     {
-                        gameBoard.placePiece(col, gameBoard.getPlayer1());
+                        if (playerTurn == gameBoard.getPlayer1().getId())
+                        {
+                            gameBoard.placePiece(col, gameBoard.getPlayer1());
+                        }
+                        else
+                        {
+                            gameBoard.placePiece(col, gameBoard.getPlayer2());
+                        }
+
+                        if (gameBoard.checkWin(playerTurn)) //moved inside so i can make it check if collum is full
+                        {
+                            lbl_playerTurn.Visible = false;
+                            gameOver = true;
+                            if (playerTurn == gameBoard.getPlayer1().getId())
+                            {
+                                lbl_win.Text = gameBoard.getPlayer1().getName() + " Wins!";
+                                lbl_win.ForeColor = gameBoard.getPlayer1().getChipColor();
+                                lbl_win.Visible = true;
+                                statUpdate(gameBoard.getPlayer1().getId());
+                            }
+                            else
+                            {
+                                lbl_win.Text = gameBoard.getPlayer2().getName() + " Wins!";
+                                lbl_win.ForeColor = gameBoard.getPlayer2().getChipColor();
+                                lbl_win.Visible = true;
+                                statUpdate(gameBoard.getPlayer2().getId());
+                            }
+                            initializeDisplay();
+                        }
+                        else
+                            nextTurn();
                     }
-                    else
-                    {
-                        gameBoard.placePiece(col, gameBoard.getPlayer2());
-                    }
+                    
                 }
-                if (gameBoard.checkWin(playerTurn))
-                {
-                    lbl_playerTurn.Visible = false;
-                    gameOver = true;
-                    if (playerTurn == gameBoard.getPlayer1().getId())
-                    {
-                        lbl_win.Text = gameBoard.getPlayer1().getName() + " Wins!";
-                        lbl_win.ForeColor = gameBoard.getPlayer1().getChipColor();
-                        lbl_win.Visible = true;
-                        statUpdate(gameBoard.getPlayer1().getId());
-                    }
-                    else
-                    {
-                        lbl_win.Text = gameBoard.getPlayer2().getName() + " Wins!";
-                        lbl_win.ForeColor = gameBoard.getPlayer2().getChipColor();
-                        lbl_win.Visible = true;
-                        statUpdate(gameBoard.getPlayer2().getId());
-                    }
-                    initializeDisplay();
-                }
-                else
-                    nextTurn();
+                
+            }
+            else
+            {
+                bot.play(gameBoard);
+                nextTurn();
             }
         }
         public void nextTurn()
@@ -86,7 +99,8 @@ namespace CIS153_FinalProject
                 pictureBox1.Image = gameBoard.getPlayer2().getChipImage();
                 lbl_playerTurn.Text = gameBoard.getPlayer2().getName() + "'s Turn";
                 lbl_playerTurn.ForeColor = gameBoard.getPlayer2().getChipColor();
-                //bot.play(gameBoard);
+                
+                //nextTurn();
             }
             else
             {

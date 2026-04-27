@@ -379,7 +379,18 @@ namespace CIS153_FinalProject
             }
             return false;
         }
-
+        private Cell[,] cloneBoard()
+        {
+            Cell[,]board = new Cell[rows, cols];
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    board[i, j] = (Cell)this.board[i, j].clone();
+                }
+            }
+            return board;
+        }
         public object Clone()
         {
             //Cell[,] tempCell = new Cell[7,6];
@@ -388,13 +399,17 @@ namespace CIS153_FinalProject
             //    for (int j = 0; j < 6; j++)
             //        tempCell[i,j] = (Cell)board[i,j].clone();
             //}
+            Cell[,] board = new Cell[rows, cols];
+
+
+
             return new Board()
             {
-                rows = rows,
-                cols = cols,
+                rows = this.rows,
+                cols = this.cols,
                 player1 = (Player)player1.clone(),
                 player2 = (Player)player2.clone(),
-                board = (Cell[,])board.Clone(),
+                board = cloneBoard()
             };
 
 

@@ -13,29 +13,33 @@ namespace CIS153_FinalProject
         public void play(Board board)
         {
             int imediatePlayNum = imediatePlayCheck(board);
-            tempBoard = board;
-            
+            tempBoard = (Board)board.Clone();
+
+            Console.WriteLine("imediate Play");
+            Console.WriteLine(board.getCols() + " " + board.getRows());
             if (imediatePlayNum != -1) //if a play is nessicery then play peice
             {
                 board.placePiece(imediatePlayNum, board.getPlayer2());
                 return;
             }
-
-            if (board.board[4, 0].isOpen()) // the middle is the best play at the start
+            Console.WriteLine("mid Play");
+            if (board.board[0, 3].isOpen()) // the middle is the best play at the start
             {
-                board.placePiece(4, board.getPlayer2());
+                board.placePiece(3, board.getPlayer2());
                 return;
             }
-
-            for(int j = 0; j < 2; j++) //checks if groups of 3 can be created then groups of 2
+            Console.WriteLine("check3s");
+            for (int j = 0; j < 2; j++) //checks if groups of 3 can be created then groups of 2
             {
                 int check3sInt = checkNum(board, 3 - j);
+                Console.WriteLine("check3s returned " + check3sInt);
                 if (check3sInt != -1)
                 {
                     board.placePiece(check3sInt, board.getPlayer2());
                     return;
                 }
             }
+            Console.WriteLine("random");
             //if those dont retrun then it places at random
             board.placePiece(randomLocation(board), board.getPlayer2());
 
@@ -45,7 +49,7 @@ namespace CIS153_FinalProject
         {
             for (int i = 0; i < 7; i++)
             { // checks win first
-                tempBoard = board;
+                tempBoard = (Board)board.Clone();
                 tempBoard.placePiece(i, tempBoard.getPlayer2());
                 //board.displayBoardConsole(); testing purposes
                 if (tempBoard.checkWin(tempBoard.getPlayer2().getId()))
@@ -55,7 +59,7 @@ namespace CIS153_FinalProject
             }
             for (int i = 0; i < 7; i++)
             { // if win is not posible in turn then it checks for a block 
-                tempBoard = board;
+                tempBoard = (Board)board.Clone();
                 tempBoard.placePiece(i, board.getPlayer1());
                 if (tempBoard.checkWin(tempBoard.getPlayer1().getId()))
                 {
@@ -70,36 +74,41 @@ namespace CIS153_FinalProject
         {
             for (int i = 0; i < 7; i++)
             {
-                tempBoard = board;
+                tempBoard = (Board)board.Clone();;
                 tempBoard.placePiece(i, board.getPlayer2());
                 int row = 0;
 
                 for (int j = 0; j < 6; j++)
                 {
-                    if (!board.board[i, j].isOpen())
+                    if (!board.board[j, i].isOpen())
                     {
-                        break;
-                    }
-                    else
                         row = j;
+                    }
+                }
+                Console.WriteLine("check col" + i);
+                if (row > num - 1)
+                {
+                    if (checkNumInCol(tempBoard, i, row, board.getPlayer2().getId(), num))
+                        return i;
                 }
 
-                if (checkNumInCol(tempBoard, i, board.getPlayer2().getId(), num))
+                Console.WriteLine("check diag" + i);
+
+                if (checkNumInDiag(tempBoard, tempBoard.getPlayer2().getId(), num, row, i))
                     return i;
-                if (checkNumInDiag(tempBoard, tempBoard.getPlayer2().getId(), num))
-                    return i;
-                if (checkNumInRow(tempBoard, row, tempBoard.getPlayer2().getId(), num))
+                Console.WriteLine("check row" + i);
+                if (checkNumInRow(tempBoard, row, i, tempBoard.getPlayer2().getId(), num))
                     return i;
             }
             for (int i = 0; i < 7; i++)
             {
-                tempBoard = board;
-                tempBoard.placePiece((int)i, board.getPlayer1());
+                tempBoard = (Board)board.Clone();
+                tempBoard.placePiece(i, board.getPlayer1());
                 int row = 0;
 
                 for (int j = 0; j < 6; j++)
                 {
-                    if (!board.board[i, j].isOpen())
+                    if (!board.board[j, i].isOpen())
                     {
                         break;
                     }
@@ -107,161 +116,102 @@ namespace CIS153_FinalProject
                         row = j;
                 }
 
-                if (checkNumInCol(tempBoard, i, board.getPlayer1().getId(), num))
+                if(row > num - 1)
+                {
+                    if (checkNumInCol(tempBoard, i, row, board.getPlayer1().getId(), num))
+                        return i;
+                }
+                
+                if (checkNumInDiag(tempBoard, tempBoard.getPlayer1().getId(), num, row, i))
                     return i;
-                if (checkNumInDiag(tempBoard, tempBoard.getPlayer1().getId(), num))
-                    return i;
-                if (checkNumInRow(tempBoard, row, tempBoard.getPlayer1().getId(), num))
+                if (checkNumInRow(tempBoard, row, i, tempBoard.getPlayer1().getId(), num))
                     return i;
             }
 
             return -1;
         }
-        bool checkNumInCol(Board board, int col, int playerId, int num)
+
+        bool checkNumInCol(Board board, int col, int row, int playerId, int num) //checks down from temp block
         {
-            int chipCount = 0;
-            if (playerId == board.getPlayer1().getId())
+            for (int i = 0; i < num - 1; i++)
             {
-                for (int i = 0; i < board.getRows(); i++)
+                if (board.board[row - i, col].getCharacter() != (char)playerId)
+                    return false;
+            }
+            return true;
+        }
+        bool checkNumInDiag(Board board, int playerId, int num, int row, int col)
+        {
+            int numCount = 0;
+            
+            for (int i = 0; i < num; i++) // checks all 4 posible placements
+            {
+                numCount = 0;
+                int tempRow;
+                int tempCol;
+                if (row - num + i >= 0 && row - num + i <= 3 && col - num + i <= 4 && col - num + i >= 0) //moves the row down 4
                 {
-                    if (board.board[i, col].getChip() == board.getPlayer1().getChip())
+                    tempRow = row - num + i;
+                    tempCol = col - num + i;
+                    for (int j = 0; j < num; j++)
                     {
-                        chipCount++;
-                    }
-                    else
-                    {
-                        chipCount = 0;
-                    }
-                    if (chipCount >= num)
-                    {
-                        return true;
+                        if (board.board[tempRow, tempCol].getCharacter() == (char)playerId)
+                            numCount++;
+                        else
+                            numCount = 0;
+                        if (numCount == num)
+                            return true;
+                        tempRow++;
+                        tempCol++;
                     }
                 }
             }
-            else if (playerId == board.getPlayer2().getId())
+            for (int i = 0; i < num; i++) // checks all 4 posible placements
             {
-                for (int i = 0; i < board.getRows(); i++)
+                numCount = 0;
+                int tempRow = row - num + i;
+                int tempCol = col + num - i;
+                if (tempRow >= 0 && tempRow <= 3 && tempCol <= 4 && tempCol - i >= 0) //moves the row down 4
                 {
-                    if (board.board[i, col].getChip() == board.getPlayer2().getChip())
+                    
+                    for (int j = 0; j < num; j++)
                     {
-                        chipCount++;
-                    }
-                    else
-                    {
-                        chipCount = 0;
-                    }
-                    if (chipCount >= num)
-                    {
-                        return true;
+                        if (board.board[tempRow, tempCol].getCharacter() == (char)playerId)
+                            numCount++;
+                        else
+                            numCount = 0;
+                        if (numCount == num)
+                            return true;
+                        tempRow++;
+                        tempCol--;
                     }
                 }
             }
             return false;
         }
-        bool checkNumInDiag(Board board, int playerId, int num)
+        bool checkNumInRow(Board board, int row, int col, int playerId, int num)
         {
-            int chipCount;
-            Player player;
-            bool found3 = false;
-            if (playerId == board.getPlayer1().getId())
+            int numCount;
+            for (int i = 0; i < 4; i++) //checks all posible states
             {
-                player = board.getPlayer1();
-            }
-            else
-            {
-                player = board.getPlayer2();
-            }
-            for (int i = 0; i < 2; i++)
-            {
-                for (int j = 0; j <= (board.getRows() - 4); j++)
-                {
-                    chipCount = 0;
-                    for (int k = 0; k < (board.getRows() - j); k++)
+                numCount = 0;
+                int tempCol = col - num + i;
+                if (tempCol >= 0 && tempCol <= 4)
+                    for (int j = 0;j < num; j++)
                     {
-                        if ((board.board[j + k, k].getChip() == player.getChip()))
-                        {
-                            chipCount++;
-                        }
+                        if (board.board[row, tempCol].getCharacter() == (char)playerId)
+                            numCount++;
                         else
-                        {
-                            chipCount = 0;
-                        }
-                        if (chipCount >= num)
-                        {
-                            found3 = true;
-                        }
+                            numCount = 0;
+                        if (numCount >= num)
+                            return true;
+                        tempCol++;
                     }
-                }
-                for (int j = 1; j <= (board.getCols() - 4); j++)
-                {
-                    chipCount = 0;
-                    for (int k = 0; k < (board.getCols() - j); k++)
-                    {
-                        if ((board.board[k, j + k].getChip() == player.getChip()))
-                        {
-                            chipCount++;
-                        }
-                        else
-                        {
-                            chipCount = 0;
-                        }
-                        if (chipCount >= num)
-                        {
-                            found3 = true;
-                        }
-                    }
-                }
-                //reverseBoard(); //code that was taken over that I dont know is nessicery
-            }
-            if (found3)
-            {
-                return true;
-            }
-            return false;
-        }
-        bool checkNumInRow(Board board, int r, int playerId, int num)
-        {
-            int chipCount = 0;
-            if (playerId == board.getPlayer1().getId())
-            {
-                for (int i = 0; i < board.getCols(); i++)
-                {
-                    if (board.board[r, i].getChip() == board.getPlayer1().getChip())
-                    {
-                        chipCount++;
-                    }
-                    else
-                    {
-                        chipCount = 0;
-                    }
-                    if (chipCount >= num)
-                    {
-                        return true;
-                    }
-                }
-            }
-            else if (playerId == board.getPlayer2().getId())
-            {
-                for (int i = 0; i < board.getCols(); i++)
-                {
-                    if (board.board[r, i].getChip() == board.getPlayer2().getChip())
-                    {
-                        chipCount++;
-                    }
-                    else
-                    {
-                        chipCount = 0;
-                    }
-                    if (chipCount >= num)
-                    {
-                        return true;
-                    }
-                }
             }
             return false;
         }
 
-        //random placement
+        
 
         int randomLocation(Board board)
         {
@@ -270,7 +220,7 @@ namespace CIS153_FinalProject
             int amount = 0;
             for (int i = 0;i < board.getCols();i++)
             {
-                if (board.board[i,5].isOpen())
+                if (board.board[5,i].isOpen())
                 {
                     aviableSpaces.Add(i);
                     amount++;
