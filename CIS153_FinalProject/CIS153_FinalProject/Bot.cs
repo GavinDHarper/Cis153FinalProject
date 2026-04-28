@@ -32,7 +32,7 @@ namespace CIS153_FinalProject
             for (int j = 0; j < 2; j++) //checks if groups of 3 can be created then groups of 2
             {
                 int check3sInt = checkNum(board, 3 - j);
-                Console.WriteLine("check3s returned " + check3sInt);
+                Console.WriteLine("check3s returned " + check3sInt + " " + (3- j));
                 if (check3sInt != -1)
                 {
                     board.placePiece(check3sInt, board.getPlayer2());
@@ -74,20 +74,27 @@ namespace CIS153_FinalProject
         {
             for (int i = 0; i < 7; i++)
             {
-                tempBoard = (Board)board.Clone();;
+                
+                tempBoard = (Board)board.Clone();
+                if (!tempBoard.board[5, i].isOpen()) //makes sure the bot doesnt play out of bounds
+                    i++;
+                if (i >= 7)
+                    return -1;
+
                 tempBoard.placePiece(i, board.getPlayer2());
                 int row = 0;
-
+                
                 for (int j = 0; j < 6; j++)
                 {
-                    if (!board.board[j, i].isOpen())
+                    if (!tempBoard.board[j, i].isOpen())
                     {
                         row = j;
                     }
                 }
-                Console.WriteLine("check col" + i);
+                
                 if (row > num - 1)
                 {
+                    Console.WriteLine("check col" + i);
                     if (checkNumInCol(tempBoard, i, row, board.getPlayer2().getId(), num))
                         return i;
                 }
@@ -100,30 +107,34 @@ namespace CIS153_FinalProject
                 if (checkNumInRow(tempBoard, row, i, tempBoard.getPlayer2().getId(), num))
                     return i;
             }
+
             for (int i = 0; i < 7; i++)
             {
-                tempBoard = (Board)board.Clone();
+                tempBoard = (Board)board.Clone(); ;
                 tempBoard.placePiece(i, board.getPlayer1());
                 int row = 0;
 
                 for (int j = 0; j < 6; j++)
                 {
-                    if (!board.board[j, i].isOpen())
+                    if (!tempBoard.board[j, i].isOpen())
                     {
-                        break;
-                    }
-                    else
+                        Console.WriteLine(tempBoard.board[j,i].isOpen());
                         row = j;
+                    }
                 }
-
-                if(row > num - 1)
+                
+                if (row >= num - 1)
                 {
+                    Console.WriteLine("check col" + i);
                     if (checkNumInCol(tempBoard, i, row, board.getPlayer1().getId(), num))
                         return i;
                 }
-                
+
+                Console.WriteLine("check diag" + i);
+
                 if (checkNumInDiag(tempBoard, tempBoard.getPlayer1().getId(), num, row, i))
                     return i;
+                Console.WriteLine("check row" + i);
                 if (checkNumInRow(tempBoard, row, i, tempBoard.getPlayer1().getId(), num))
                     return i;
             }
@@ -133,12 +144,20 @@ namespace CIS153_FinalProject
 
         bool checkNumInCol(Board board, int col, int row, int playerId, int num) //checks down from temp block
         {
+            //Console.WriteLine("looking at col for player " + playerId + " ");
             for (int i = 0; i < num - 1; i++)
             {
+                //Console.Write(board.board[row - i, col].getCharacter() + ", ");
                 if (board.board[row - i, col].getCharacter() != (char)playerId)
+                {
+                    //Console.WriteLine();
                     return false;
+                }
+                    
             }
+            Console.WriteLine();
             return true;
+            
         }
         bool checkNumInDiag(Board board, int playerId, int num, int row, int col)
         {
@@ -194,11 +213,13 @@ namespace CIS153_FinalProject
             int numCount;
             for (int i = 0; i < 4; i++) //checks all posible states
             {
+                //Console.WriteLine();
                 numCount = 0;
                 int tempCol = col - num + i;
                 if (tempCol >= 0 && tempCol <= 4)
                     for (int j = 0;j < num; j++)
                     {
+                        //Console.Write(board.board[row, tempCol].getCharacter());
                         if (board.board[row, tempCol].getCharacter() == (char)playerId)
                             numCount++;
                         else

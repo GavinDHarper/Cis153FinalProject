@@ -45,67 +45,63 @@ namespace CIS153_FinalProject
             PictureBox pic = sender as PictureBox;
             if (gameOver == false)
             {
-                if (playerTurn != gameBoard.getPlayer2().getId()) ////////bug fix this
+                if (pic != null)
                 {
-                    if (pic != null)
+                    col = Int32.Parse(pic.Tag.ToString());
+                    bool placed;
+                    if (gameBoard.board[5, col].isOpen()) //this is important becuase otherwize it will keep playing 
+                                                          //checks if top space is open if it isnt then you cant place any peice
                     {
-                        col = Int32.Parse(pic.Tag.ToString());
-                        bool placed;
-                        if (gameBoard.board[5, col].isOpen()) //this is important becuase otherwize it will keep playing 
-                                                              //checks if top space is open if it isnt then you cant place any peice
+                        if (playerTurn == gameBoard.getPlayer1().getId())
                         {
+                            placed = gameBoard.placePiece(col, gameBoard.getPlayer1());
+                        }
+                        else
+                        {
+                            placed = gameBoard.placePiece(col, gameBoard.getPlayer2());
+                        }
+                        if (!placed)
+                        {
+                            return;
+                        }
+                        if (gameBoard.checkWin(playerTurn)) //moved inside so i can make it check if collum is full
+                        {
+                            lbl_playerTurn.Visible = false;
+                            gameOver = true;
                             if (playerTurn == gameBoard.getPlayer1().getId())
                             {
-                                placed = gameBoard.placePiece(col, gameBoard.getPlayer1());
+                                lbl_win.Text = gameBoard.getPlayer1().getName() + " Wins!";
+                                lbl_win.ForeColor = gameBoard.getPlayer1().getChipColor();
+                                lbl_win.Visible = true;
+                                statUpdate(gameBoard.getPlayer1().getId());
                             }
                             else
                             {
-                                placed = gameBoard.placePiece(col, gameBoard.getPlayer2());
+                                lbl_win.Text = gameBoard.getPlayer2().getName() + " Wins!";
+                                lbl_win.ForeColor = gameBoard.getPlayer2().getChipColor();
+                                lbl_win.Visible = true;
+                                statUpdate(gameBoard.getPlayer2().getId());
                             }
-                            if (!placed)
-                            {
-                                return;
-                            }
-                            if (gameBoard.checkWin(playerTurn)) //moved inside so i can make it check if collum is full
+                            initializeDisplay();
+                        }
+                        else
+                        {
+                            nextTurn();
+                            bot.play(gameBoard);
+                            if (gameBoard.checkWin(2)) //moved inside so i can make it check if collum is full
                             {
                                 lbl_playerTurn.Visible = false;
                                 gameOver = true;
-                                if (playerTurn == gameBoard.getPlayer1().getId())
-                                {
-                                    lbl_win.Text = gameBoard.getPlayer1().getName() + " Wins!";
-                                    lbl_win.ForeColor = gameBoard.getPlayer1().getChipColor();
-                                    lbl_win.Visible = true;
-                                    statUpdate(gameBoard.getPlayer1().getId());
-                                }
-                                else
-                                {
-                                    lbl_win.Text = gameBoard.getPlayer2().getName() + " Wins!";
-                                    lbl_win.ForeColor = gameBoard.getPlayer2().getChipColor();
-                                    lbl_win.Visible = true;
-                                    statUpdate(gameBoard.getPlayer2().getId());
-                                }
-                                initializeDisplay();
+                                lbl_win.Text = gameBoard.getPlayer2().getName() + " Wins!";
+                                lbl_win.ForeColor = gameBoard.getPlayer2().getChipColor();
+                                lbl_win.Visible = true;
+                                statUpdate(gameBoard.getPlayer2().getId());
                             }
-                            else
-                                nextTurn();
+                            nextTurn();
                         }
 
                     }
 
-                }
-                else
-                {
-                    bot.play(gameBoard);
-                    if (gameBoard.checkWin(2)) //moved inside so i can make it check if collum is full
-                    {
-                        lbl_playerTurn.Visible = false;
-                        gameOver = true;
-                        lbl_win.Text = gameBoard.getPlayer2().getName() + " Wins!";
-                        lbl_win.ForeColor = gameBoard.getPlayer2().getChipColor();
-                        lbl_win.Visible = true;
-                        statUpdate(gameBoard.getPlayer2().getId());
-                    }
-                    nextTurn();
                 }
             }
         }
@@ -264,7 +260,7 @@ namespace CIS153_FinalProject
             col = Int32.Parse(pic.Tag.ToString());
             for (int row = 0; row < gameBoard.getRows(); row++)
             {
-                if (gameBoard.board[row, col].isOpen())
+                if (gameBoard.board[row, col].isOpen() && !gameOver)
                 {
                     string picBoxPath = "SP_" + row.ToString() + col.ToString();
                     //Console.WriteLine(picBoxPath);
