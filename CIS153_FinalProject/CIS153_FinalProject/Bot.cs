@@ -10,40 +10,39 @@ namespace CIS153_FinalProject
     {
         public Board tempBoard = new Board();
 
-        public void play(Board board)
+        public bool play(Board board)
         {
             int imediatePlayNum = imediatePlayCheck(board);
             tempBoard = (Board)board.Clone();
-
+            bool played = false;
             Console.WriteLine("imediate Play");
             Console.WriteLine(board.getCols() + " " + board.getRows());
-            if (imediatePlayNum != -1) //if a play is nessicery then play peice
+            if (imediatePlayNum != -1 && played == false) //if a play is nessicery then play peice
             {
-                board.placePiece(imediatePlayNum, board.getPlayer2());
-                return;
+                played = board.placePiece(imediatePlayNum, board.getPlayer2());
             }
             Console.WriteLine("mid Play");
-            if (board.board[0, 3].isOpen()) // the middle is the best play at the start
+            if (board.board[0, 3].isOpen() && played == false) // the middle is the best play at the start
             {
-                board.placePiece(3, board.getPlayer2());
-                return;
+                played = board.placePiece(3, board.getPlayer2());
             }
             Console.WriteLine("check3s");
             for (int j = 0; j < 2; j++) //checks if groups of 3 can be created then groups of 2
             {
                 int check3sInt = checkNum(board, 3 - j);
                 Console.WriteLine("check3s returned " + check3sInt + " " + (3- j));
-                if (check3sInt != -1)
+                if (check3sInt != -1 && played == false)
                 {
-                    board.placePiece(check3sInt, board.getPlayer2());
-                    return;
+                    played = board.placePiece(check3sInt, board.getPlayer2());
                 }
             }
             Console.WriteLine("random");
             //if those dont retrun then it places at random
-            board.placePiece(randomLocation(board), board.getPlayer2());
-
-
+            if (!played)
+            { 
+                played = board.placePiece(randomLocation(board), board.getPlayer2());
+            }
+            return played;
         }
         int imediatePlayCheck(Board board)
         {

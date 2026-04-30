@@ -48,60 +48,49 @@ namespace CIS153_FinalProject
                 if (pic != null)
                 {
                     col = Int32.Parse(pic.Tag.ToString());
-                    bool placed;
-                    if (gameBoard.board[5, col].isOpen()) //this is important becuase otherwize it will keep playing 
-                                                          //checks if top space is open if it isnt then you cant place any peice
+                    bool placed = false;
+                    if (playerTurn == gameBoard.getPlayer1().getId())
                     {
-                        if (playerTurn == gameBoard.getPlayer1().getId())
-                        {
-                            placed = gameBoard.placePiece(col, gameBoard.getPlayer1());
-                        }
-                        else
-                        {
-                            placed = gameBoard.placePiece(col, gameBoard.getPlayer2());
-                        }
-                        if (!placed)
-                        {
-                            return;
-                        }
-                        if (gameBoard.checkWin(playerTurn)) //moved inside so i can make it check if collum is full
+                        placed = gameBoard.placePiece(col, gameBoard.getPlayer1());
+                        initializeDisplay();
+                    }
+                    if (!placed)
+                    {
+                        return;
+                    }
+                    if (gameBoard.checkWin(1)) //moved inside so i can make it check if collum is full
+                    {
+                        lbl_playerTurn.Visible = false;
+                        gameOver = true;
+                        lbl_win.Text = gameBoard.getPlayer1().getName() + " Wins!";
+                        lbl_win.ForeColor = gameBoard.getPlayer1().getChipColor();
+                        lbl_win.Visible = true;
+                        statUpdate(gameBoard.getPlayer1().getId());
+                    }
+                    else
+                    {
+                        nextTurn();
+                        bot.play(gameBoard);
+                        if (gameBoard.checkWin(2)) //moved inside so i can make it check if collum is full
                         {
                             lbl_playerTurn.Visible = false;
                             gameOver = true;
-                            if (playerTurn == gameBoard.getPlayer1().getId())
-                            {
-                                lbl_win.Text = gameBoard.getPlayer1().getName() + " Wins!";
-                                lbl_win.ForeColor = gameBoard.getPlayer1().getChipColor();
-                                lbl_win.Visible = true;
-                                statUpdate(gameBoard.getPlayer1().getId());
-                            }
-                            else
-                            {
-                                lbl_win.Text = gameBoard.getPlayer2().getName() + " Wins!";
-                                lbl_win.ForeColor = gameBoard.getPlayer2().getChipColor();
-                                lbl_win.Visible = true;
-                                statUpdate(gameBoard.getPlayer2().getId());
-                            }
-                            initializeDisplay();
+                            lbl_win.Text = gameBoard.getPlayer2().getName() + " Wins!";
+                            lbl_win.ForeColor = gameBoard.getPlayer2().getChipColor();
+                            lbl_win.Visible = true;
+                            statUpdate(gameBoard.getPlayer2().getId());
                         }
-                        else
-                        {
-                            nextTurn();
-                            bot.play(gameBoard);
-                            if (gameBoard.checkWin(2)) //moved inside so i can make it check if collum is full
-                            {
-                                lbl_playerTurn.Visible = false;
-                                gameOver = true;
-                                lbl_win.Text = gameBoard.getPlayer2().getName() + " Wins!";
-                                lbl_win.ForeColor = gameBoard.getPlayer2().getChipColor();
-                                lbl_win.Visible = true;
-                                statUpdate(gameBoard.getPlayer2().getId());
-                            }
-                            nextTurn();
-                        }
-
+                        nextTurn();
                     }
-
+                    if (gameBoard.IsGameboardFull())
+                    {
+                        lbl_playerTurn.Visible = false;
+                        gameOver = true;
+                        lbl_win.Text = "It's a Tie!";
+                        lbl_win.ForeColor = Color.DarkSlateGray;
+                        lbl_win.Visible = true;
+                        initializeDisplay();
+                    }
                 }
             }
         }
@@ -296,6 +285,5 @@ namespace CIS153_FinalProject
                 }
             }
         }
-
     }
 }
