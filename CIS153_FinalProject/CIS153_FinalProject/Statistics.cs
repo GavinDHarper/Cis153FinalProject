@@ -9,11 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
+using System.Media;
 
 namespace CIS153_FinalProject
 {
     public partial class Statistics : Form
     {
+        SoundPlayer click1 = new SoundPlayer("click1.wav");
         WelcomeForm WCForm;
         public Statistics()
         {
@@ -35,6 +37,7 @@ namespace CIS153_FinalProject
         {
             WCForm.Show();
             this.Close();
+            click1.Play();
         }
         public void readDisplayStats()
         {

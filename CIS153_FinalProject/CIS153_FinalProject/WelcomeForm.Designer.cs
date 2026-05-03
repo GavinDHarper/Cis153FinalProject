@@ -117,6 +117,8 @@
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.Name = "WelcomeForm";
             this.Text = "Form1";
+            this.Activated += new System.EventHandler(this.WelcomeForm_Activated);
+            this.Load += new System.EventHandler(this.WelcomeForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

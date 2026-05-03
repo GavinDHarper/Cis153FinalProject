@@ -9,11 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics.Eventing.Reader;
+using System.Media;
 
 namespace CIS153_FinalProject
 {
     public partial class Twoplayer : Form
     {
+        SoundPlayer place = new SoundPlayer("place1.wav");
+        SoundPlayer click1 = new SoundPlayer("click1.wav");
+
         Board gameBoard = new Board(6, 7, '.', new Player(1, "Player 1", new Chip("../../Resources/connect4chipIconRED.png", Color.Red)), new Player(2, "Player 2", new Chip("../../Resources/connect4chipIconBLUE.png", Color.Blue)));
         int playerTurn;
         bool gameOver = false;
@@ -59,6 +63,7 @@ namespace CIS153_FinalProject
                 {
                     return;
                 }
+                //place.Play();
                 if (gameBoard.checkWin(playerTurn))
                 {
                     lbl_playerTurn.Visible = false;
@@ -227,6 +232,19 @@ namespace CIS153_FinalProject
         {
             WCForm.Show();
             this.Close();
+            click1.Play();
+        }
+
+
+
+        //ignore these
+        private void TwoplayerForm_Load(object sender, EventArgs e)
+        {
+            place.Load();
+        }
+        private void TwoplayerForm_Activated(object sender, EventArgs e)
+        {
+            //music2.PlayLooping();
         }
     }
 }

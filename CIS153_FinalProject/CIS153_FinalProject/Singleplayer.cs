@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,6 +15,7 @@ namespace CIS153_FinalProject
 {
     public partial class Singleplayer : Form
     {
+        SoundPlayer click1 = new SoundPlayer("click1.wav");
         Board gameBoard = new Board(6, 7, '.', new Player(1, "Player 1", new Chip("../../Resources/connect4chipIconRED.png", Color.Red)), new Player(2, "Robot", new Chip("../../Resources/connect4chipIconBLUE.png", Color.Blue)));
         Bot bot = new Bot();
         int playerTurn;
@@ -170,6 +172,7 @@ namespace CIS153_FinalProject
         {
             WCForm.Show();
             this.Close();
+            click1.Play();
         }
 
         private void statUpdate(int i)

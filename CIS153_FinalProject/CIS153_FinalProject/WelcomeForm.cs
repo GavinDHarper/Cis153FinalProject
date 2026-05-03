@@ -8,11 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Media;
 
 namespace CIS153_FinalProject
 {
     public partial class WelcomeForm : Form
     {
+        SoundPlayer music = new SoundPlayer("music1.wav");
+        SoundPlayer music2 = new SoundPlayer("music2.wav");
+        SoundPlayer click1 = new SoundPlayer("click1.wav");
+
         //how fast label moves
         int yVelocity = 2;
         //starting y-value of the label
@@ -33,18 +38,32 @@ namespace CIS153_FinalProject
             bounceTimer.Start();
         }
 
-        private void btn_Singleplayer_Click(object sender, EventArgs e)
+        private void WelcomeForm_Load(object sender, EventArgs e)
+        {
+            music.PlayLooping();
+        }
+
+        private async void btn_Singleplayer_Click(object sender, EventArgs e)
         {
             Singleplayer singleplayer = new Singleplayer(this);
             singleplayer.Show();
             this.Hide();
+            music.Stop();
+            click1.Play();
+            await Task.Delay(500);
+            music2.PlayLooping();
         }
 
-        private void btn_Twoplayer_Click(object sender, EventArgs e)
+        private async void btn_Twoplayer_Click(object sender, EventArgs e)
         {
             Twoplayer twoplayer = new Twoplayer(this);
             twoplayer.Show();
             this.Hide();
+
+            music.Stop();
+            click1.Play();
+            await Task.Delay(500);
+            music2.PlayLooping();
         }
 
         private void btn_Statistics_Click(object sender, EventArgs e)
@@ -52,6 +71,8 @@ namespace CIS153_FinalProject
             Statistics statistics = new Statistics(this);
             statistics.Show();
             this.Hide();
+            //music.Stop();
+            click1.Play();
         }
 
         private void btn_Exit_Click(object sender, EventArgs e)
@@ -77,6 +98,13 @@ namespace CIS153_FinalProject
                 yVelocity = 2;
             }
 
+        }
+
+        private async void WelcomeForm_Activated(object sender, EventArgs e)
+        {
+            await Task.Delay(500);
+            music.PlayLooping();
+            
         }
     }
 }

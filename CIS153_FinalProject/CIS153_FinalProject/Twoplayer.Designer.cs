@@ -860,6 +860,8 @@
             this.Name = "Twoplayer";
             this.Tag = "3";
             this.Text = "TwoplayerForm";
+            this.Activated += new System.EventHandler(this.TwoplayerForm_Activated);
+            this.Load += new System.EventHandler(this.TwoplayerForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.SP_00)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_20)).EndInit();
