@@ -40,6 +40,7 @@ namespace CIS153_FinalProject
 
         private void WelcomeForm_Load(object sender, EventArgs e)
         {
+
             music.PlayLooping();
         }
 
