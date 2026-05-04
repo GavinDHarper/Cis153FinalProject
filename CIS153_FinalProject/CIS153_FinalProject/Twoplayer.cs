@@ -23,6 +23,7 @@ namespace CIS153_FinalProject
         bool gameOver = false;
 
         WelcomeForm WCForm;
+        Statistics statForm;
         public Twoplayer()
         {
             InitializeComponent();
@@ -73,12 +74,14 @@ namespace CIS153_FinalProject
                         lbl_win.Text = gameBoard.getPlayer1().getName() + " Wins!";
                         lbl_win.ForeColor = gameBoard.getPlayer1().getChipColor();
                         lbl_win.Visible = true;
+                        showStats();
                     }
                     else
                     {
                         lbl_win.Text = gameBoard.getPlayer2().getName() + " Wins!";
                         lbl_win.ForeColor = gameBoard.getPlayer2().getChipColor();
                         lbl_win.Visible = true;
+                        showStats();
                     }
                     initializeDisplay();
                 }
@@ -89,6 +92,7 @@ namespace CIS153_FinalProject
                     lbl_win.Text = "It's a Tie!";
                     lbl_win.ForeColor = Color.DarkSlateGray;
                     lbl_win.Visible = true;
+                    showStats();
                     initializeDisplay();
                 }
                 else nextTurn();
@@ -235,6 +239,17 @@ namespace CIS153_FinalProject
             click1.Play();
         }
 
+        public async Task showStats()
+        {
+            //keeps game screen up for a few seconds
+            await Task.Delay(TimeSpan.FromSeconds(3));
+
+            //hides the game form and opens statistics
+            statForm = new Statistics(this, WCForm);
+            this.Hide();
+            statForm.Show();
+        }
+
 
 
         //ignore these
@@ -246,5 +261,6 @@ namespace CIS153_FinalProject
         {
             //music2.PlayLooping();
         }
+
     }
 }

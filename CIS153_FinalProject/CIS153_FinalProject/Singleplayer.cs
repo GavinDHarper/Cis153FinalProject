@@ -21,6 +21,7 @@ namespace CIS153_FinalProject
         int playerTurn;
         bool gameOver = false;
         WelcomeForm WCForm;
+        Statistics statForm;
         public Singleplayer()
         {
             InitializeComponent();
@@ -92,6 +93,7 @@ namespace CIS153_FinalProject
                         lbl_win.ForeColor = Color.DarkSlateGray;
                         lbl_win.Visible = true;
                         initializeDisplay();
+                        statUpdate(0);
                     }
                 }
             }
@@ -175,7 +177,7 @@ namespace CIS153_FinalProject
             click1.Play();
         }
 
-        private void statUpdate(int i)
+        private async Task statUpdate(int i)
         {
             try
             {
@@ -243,6 +245,14 @@ namespace CIS153_FinalProject
             {
                 Debug.WriteLine("ERROR. File Not Found");
             }
+
+            //keeps game screen up for a few seconds
+            await Task.Delay(TimeSpan.FromSeconds(3));
+
+            //hides the game form and opens statistics
+            this.Hide();
+            statForm = new Statistics(this, WCForm);
+            statForm.Show();
         }
 
         private void SP_displayGhostChip(object sender, EventArgs e)

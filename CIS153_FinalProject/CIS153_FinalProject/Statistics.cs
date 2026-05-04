@@ -17,6 +17,8 @@ namespace CIS153_FinalProject
     {
         SoundPlayer click1 = new SoundPlayer("click1.wav");
         WelcomeForm WCForm;
+        Singleplayer single;
+        Twoplayer twoplayer;
         public Statistics()
         {
             InitializeComponent();
@@ -29,6 +31,22 @@ namespace CIS153_FinalProject
             WCForm = WCF;
         }
 
+        public Statistics(Singleplayer s, WelcomeForm WCF)
+        {
+            InitializeComponent();
+            readDisplayStats();
+            single = s;
+            WCForm = WCF;
+        }
+
+        public Statistics(Twoplayer tp, WelcomeForm WCF)
+        {
+            InitializeComponent();
+            readDisplayStats();
+            twoplayer = tp;
+            WCForm = WCF;
+        }
+
         private void btn_Exit_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -37,6 +55,14 @@ namespace CIS153_FinalProject
         {
             WCForm.Show();
             this.Close();
+            if (single != null)
+            {
+                single.Close();
+            }
+            if (twoplayer != null)
+            {
+                twoplayer.Close();
+            }
             click1.Play();
         }
         public void readDisplayStats()
@@ -116,6 +142,19 @@ namespace CIS153_FinalProject
             }
         }
 
-        
+        private void btn_review_Click(object sender, EventArgs e)
+        {
+            if (single != null)
+            {
+                single.Show();
+                click1.Play();
+            }
+            else if (twoplayer != null)
+            {
+                twoplayer.Show();
+                click1.Play();
+            }
+            
+        }
     }
 }

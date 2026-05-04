@@ -43,6 +43,7 @@
             this.lbl_stats_cpuPNum = new System.Windows.Forms.Label();
             this.btn_ReturnToWelcome = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btn_review = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_Exit
@@ -197,11 +198,23 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "Game Stats";
             // 
+            // btn_review
+            // 
+            this.btn_review.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_review.Location = new System.Drawing.Point(353, 362);
+            this.btn_review.Name = "btn_review";
+            this.btn_review.Size = new System.Drawing.Size(141, 76);
+            this.btn_review.TabIndex = 19;
+            this.btn_review.Text = "Review Game";
+            this.btn_review.UseVisualStyleBackColor = true;
+            this.btn_review.Click += new System.EventHandler(this.btn_review_Click);
+            // 
             // Statistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_review);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_ReturnToWelcome);
             this.Controls.Add(this.lbl_stats_cpuPNum);
@@ -241,5 +254,6 @@
         private System.Windows.Forms.Label lbl_stats_cpuPNum;
         private System.Windows.Forms.Button btn_ReturnToWelcome;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btn_review;
     }
 }
