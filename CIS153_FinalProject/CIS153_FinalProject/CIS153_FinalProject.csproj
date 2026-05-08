@@ -50,6 +50,14 @@
     <Compile Include="Bot.cs" />
     <Compile Include="Cell.cs" />
     <Compile Include="Chip.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="GameReview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameReview.Designer.cs">
+      <DependentUpon>GameReview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Play.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Statistics.cs">
       <SubType>Form</SubType>
@@ -77,6 +85,9 @@
     <Compile Include="Singleplayer.Designer.cs">
       <DependentUpon>Singleplayer.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="GameReview.resx">
+      <DependentUpon>GameReview.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -129,6 +140,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\BoardImage.png" />
+    <Content Include="Resources\TwoPlayerGames.txt" />
     <None Include="Resources\BoardImage1.png" />
     <Content Include="Resources\connect4chipGhostBLUE.png" />
     <Content Include="Resources\connect4chipGhostRED.png" />

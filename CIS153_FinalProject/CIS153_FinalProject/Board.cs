@@ -425,5 +425,17 @@ namespace CIS153_FinalProject
                 }
             }
         }
+
+        public int latestPlayRow(int col)
+        {
+            for (int i = 0; i < rows; i++)
+            {
+                if (board[i, col].isOpen())
+                {
+                    return i - 1;
+                }
+            }
+            return 5;
+        }
     }
 }

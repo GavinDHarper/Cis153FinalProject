@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using System.Diagnostics.Eventing.Reader;
-using System.Media;
 
 namespace CIS153_FinalProject
 {
@@ -21,6 +22,8 @@ namespace CIS153_FinalProject
         Board gameBoard = new Board(6, 7, '.', new Player(1, "Player 1", new Chip("../../Resources/connect4chipIconRED.png", Color.Red)), new Player(2, "Player 2", new Chip("../../Resources/connect4chipIconBLUE.png", Color.Blue)));
         int playerTurn;
         bool gameOver = false;
+        List<Play> listOfPlays = new List<Play>();
+        List<Game> listOfGames = new List<Game>();
 
         WelcomeForm WCForm;
         Statistics statForm;
@@ -64,6 +67,8 @@ namespace CIS153_FinalProject
                 {
                     return;
                 }
+                Play newPlay = new Play(gameBoard.latestPlayRow(col), col, playerTurn);
+                listOfPlays.Add(newPlay);
                 //place.Play();
                 if (gameBoard.checkWin(playerTurn))
                 {
@@ -84,6 +89,11 @@ namespace CIS153_FinalProject
                         showStats();
                     }
                     initializeDisplay();
+                    Game newGame = new Game(new List<Play>(listOfPlays), gameBoard.getPlayer1().getName(), gameBoard.getPlayer2().getName(), playerTurn);
+                    listOfGames = new List<Game>(readGames());
+                    listOfGames.Add(newGame);
+                    listOfPlays.Clear();
+                    writeGames();
                 }
                 else if (gameBoard.IsGameboardFull())
                 {
@@ -94,6 +104,11 @@ namespace CIS153_FinalProject
                     lbl_win.Visible = true;
                     showStats();
                     initializeDisplay();
+                    Game newGame = new Game(new List<Play>(listOfPlays), gameBoard.getPlayer1().getName(), gameBoard.getPlayer2().getName(), -1);
+                    listOfGames = new List<Game>(readGames());
+                    listOfGames.Add(newGame);
+                    listOfPlays.Clear();
+                    writeGames();
                 }
                 else nextTurn();
                 for (int row = 0; row < gameBoard.getRows(); row++)
@@ -262,5 +277,94 @@ namespace CIS153_FinalProject
             //music2.PlayLooping();
         }
 
+        private List<Game> readGames()
+        {
+            try
+            {
+                StreamReader reader = new StreamReader("../../Resources/TwoPlayerGames.txt");
+                string game;
+                string play;
+                char playDelim = '.';
+                char delim = ',';
+                int playDelimPos;
+                int delimPos;
+                List<Play> plays = new List<Play>();
+                List<Game> games = new List<Game>();
+                game = reader.ReadLine();
+                while (game != null)
+                {
+                    Game gameReview = new Game();
+                    delimPos = game.IndexOf(delim);
+                    gameReview.setPlayer1(game.Substring(0, delimPos));
+                    
+                    game = game.Substring(delimPos + 1);
+                    delimPos = game.IndexOf(delim);
+                    gameReview.setPlayer2(game.Substring(0, delimPos));
+
+                    game = game.Substring(delimPos + 1);
+                    delimPos = game.IndexOf(delim);
+                    gameReview.setWinner(Int32.Parse(game.Substring(0, delimPos)));
+
+                    game = game.Substring(delimPos + 1);
+
+                    plays.Clear();
+                    playDelimPos = game.IndexOf(playDelim);
+                    play = game.Substring(0, playDelimPos);
+                    while (game.IndexOf(playDelim) != -1)
+                    {
+                        Play playReview = new Play();
+                        delimPos = play.IndexOf(delim);
+                        playReview.setRow(Int32.Parse(play.Substring(0,delimPos)));
+                        play = play.Substring(delimPos + 1);
+                        delimPos = play.IndexOf(delim);
+                        playReview.setCol(Int32.Parse(play.Substring(0, delimPos)));
+                        play = play.Substring(delimPos + 1);
+                        playReview.setTurnNum(Int32.Parse(play));
+                        plays.Add(playReview);
+                        game = game.Substring(playDelimPos + 1);
+                        playDelimPos = game.IndexOf(playDelim);
+                    if (playDelimPos != -1)
+                    { 
+                        play = game.Substring(0, playDelimPos);
+                    }
+                }
+                gameReview.setPlays(new List<Play>(plays));
+                    games.Add(gameReview);
+                    game = reader.ReadLine();
+                    if (game == "\n")
+                    {
+                        game = null;
+                    }
+                }
+                reader.Close();
+                return games;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("ERROR. File Not Found");
+                return new List<Game>();
+            }
+}
+public void writeGames()
+        {
+            try
+            {
+                StreamWriter writer = new StreamWriter("../../Resources/TwoPlayerGames.txt");
+                for (int i = 0; i < listOfGames.Count(); i++)
+                {
+                    writer.Write($"{listOfGames[i].getPlayer1()},{listOfGames[i].getPlayer2()},{listOfGames[i].getWinner()},");
+                    for (int j = 0; j < listOfGames[i].getPlays().Count(); j++)
+                    {
+                        writer.Write($"{listOfGames[i].getPlays()[j].getRow()},{listOfGames[i].getPlays()[j].getCol()},{listOfGames[i].getPlays()[j].getTurnNum()}.");
+                    }
+                    writer.Write("\n");
+                }
+                writer.Close();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("ERROR. File Not Found");
+            }
+        }
     }
 }

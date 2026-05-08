@@ -151,7 +151,9 @@ namespace CIS153_FinalProject
             }
             else if (twoplayer != null)
             {
-                twoplayer.Show();
+                GameReview gameReview = new GameReview(this, 2);
+                gameReview.Show();
+                //twoplayer.Show();
                 click1.Play();
             }
             
