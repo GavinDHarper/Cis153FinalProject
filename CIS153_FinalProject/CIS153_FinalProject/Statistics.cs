@@ -31,7 +31,7 @@ namespace CIS153_FinalProject
             WCForm = WCF;
         }
 
-        public Statistics(Singleplayer s, WelcomeForm WCF)
+        public Statistics(Singleplayer s, WelcomeForm WCF, string winner, Color winnerColor)
         {
             InitializeComponent();
             readDisplayStats();
@@ -39,9 +39,12 @@ namespace CIS153_FinalProject
             WCForm = WCF;
             btn_review.Visible = true;
             btn_playAgain.Visible = true;
+            lbl_win.ForeColor = winnerColor;
+            lbl_win.Text = winner;
+            lbl_win.Visible = true;
         }
 
-        public Statistics(Twoplayer tp, WelcomeForm WCF)
+        public Statistics(Twoplayer tp, WelcomeForm WCF, string winner, Color winnerColor)
         {
             InitializeComponent();
             readDisplayStats();
@@ -49,6 +52,9 @@ namespace CIS153_FinalProject
             WCForm = WCF;
             btn_review.Visible = true;
             btn_playAgain.Visible = true;
+            lbl_win.ForeColor = winnerColor;
+            lbl_win.Text = winner;
+            lbl_win.Visible = true;
         }
 
         private void btn_Exit_Click(object sender, EventArgs e)
@@ -179,6 +185,11 @@ namespace CIS153_FinalProject
                 newGame.Show();
             }
             this.Close();
+        }
+
+        private void Statistics_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            WCForm.Show();
         }
     }
 }

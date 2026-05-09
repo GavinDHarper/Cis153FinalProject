@@ -35,7 +35,7 @@ namespace CIS153_FinalProject
             initializeDisplay();
             WCForm = WCF;
             playerTurn = gameBoard.getPlayer1().getId();
-            lbl_playerTurn.Text = gameBoard.getPlayer1().getName() + "'s Turn";
+            lbl_playerTurn.Text = "Your Turn";
             lbl_playerTurn.ForeColor = gameBoard.getPlayer1().getChipColor();
         }
 
@@ -139,7 +139,7 @@ namespace CIS153_FinalProject
             {
                 playerTurn = gameBoard.getPlayer1().getId();
                 pictureBox1.Image = gameBoard.getPlayer1().getChipImage();
-                lbl_playerTurn.Text = gameBoard.getPlayer1().getName() + "'s Turn";
+                lbl_playerTurn.Text = "Your Turn";
                 lbl_playerTurn.ForeColor = gameBoard.getPlayer1().getChipColor();
             }
 
@@ -276,7 +276,18 @@ namespace CIS153_FinalProject
             await Task.Delay(TimeSpan.FromSeconds(3));
 
             //hides the game form and opens statistics
-            statForm = new Statistics(this, WCForm);
+            if (gameBoard.checkWin(1))
+            {
+                statForm = new Statistics(this, WCForm, gameBoard.getPlayer1().getName() + " Won!", gameBoard.getPlayer1().getChipColor());
+            }
+            else if (gameBoard.checkWin(2))
+            {
+                statForm = new Statistics(this, WCForm, gameBoard.getPlayer2().getName() + " Won!", gameBoard.getPlayer2().getChipColor());
+            }
+            else 
+            {
+                statForm = new Statistics(this, WCForm, gameBoard.getPlayer2().getName() + "It was a tie!", Color.Black);
+            }
             statForm.Show();
             this.Close();
         }
@@ -432,6 +443,14 @@ namespace CIS153_FinalProject
                 }
             }
             return -1;
+        }
+
+        private void Singleplayer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (gameOver != true)
+            {
+                WCForm.Show();
+            }
         }
     }
 }

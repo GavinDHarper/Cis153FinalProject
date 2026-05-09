@@ -240,5 +240,10 @@ namespace CIS153_FinalProject
         {
             Application.Exit();
         }
+
+        private void GameReview_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            statForm.Show();
+        }
     }
 }

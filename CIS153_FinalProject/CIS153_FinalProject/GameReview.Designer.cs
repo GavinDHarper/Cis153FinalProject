@@ -780,7 +780,9 @@
             this.Controls.Add(this.SP_00);
             this.Controls.Add(this.btn_Exit);
             this.Name = "GameReview";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GameReview";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GameReview_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_56)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_46)).EndInit();

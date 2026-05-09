@@ -45,6 +45,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btn_review = new System.Windows.Forms.Button();
             this.btn_playAgain = new System.Windows.Forms.Button();
+            this.lbl_win = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_Exit
@@ -223,11 +224,23 @@
             this.btn_playAgain.Visible = false;
             this.btn_playAgain.Click += new System.EventHandler(this.btn_playAgain_Click);
             // 
+            // lbl_win
+            // 
+            this.lbl_win.AutoSize = true;
+            this.lbl_win.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_win.Location = new System.Drawing.Point(490, 250);
+            this.lbl_win.Name = "lbl_win";
+            this.lbl_win.Size = new System.Drawing.Size(197, 37);
+            this.lbl_win.TabIndex = 110;
+            this.lbl_win.Text = "Win Display";
+            this.lbl_win.Visible = false;
+            // 
             // Statistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lbl_win);
             this.Controls.Add(this.btn_playAgain);
             this.Controls.Add(this.btn_review);
             this.Controls.Add(this.label1);
@@ -246,7 +259,9 @@
             this.Controls.Add(this.lbl_stats_playerWins);
             this.Controls.Add(this.btn_Exit);
             this.Name = "Statistics";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "StatisticsForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Statistics_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -271,5 +286,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_review;
         private System.Windows.Forms.Button btn_playAgain;
+        private System.Windows.Forms.Label lbl_win;
     }
 }

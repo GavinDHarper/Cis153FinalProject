@@ -872,7 +872,9 @@
             this.Controls.Add(this.btn_Exit);
             this.Controls.Add(this.PB_BoardImage);
             this.Name = "Singleplayer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WelcomeForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Singleplayer_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.PB_BoardImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_56)).EndInit();

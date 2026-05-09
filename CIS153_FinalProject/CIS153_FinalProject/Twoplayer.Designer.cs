@@ -858,9 +858,11 @@
             this.Controls.Add(this.SP_00);
             this.Controls.Add(this.btn_Exit);
             this.Name = "Twoplayer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Tag = "3";
             this.Text = "TwoplayerForm";
             this.Activated += new System.EventHandler(this.TwoplayerForm_Activated);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Twoplayer_FormClosing);
             this.Load += new System.EventHandler(this.TwoplayerForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.SP_00)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_10)).EndInit();
