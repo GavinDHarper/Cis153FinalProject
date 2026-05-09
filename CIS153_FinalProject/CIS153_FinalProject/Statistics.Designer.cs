@@ -44,6 +44,7 @@
             this.btn_ReturnToWelcome = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_review = new System.Windows.Forms.Button();
+            this.btn_playAgain = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_Exit
@@ -207,13 +208,27 @@
             this.btn_review.TabIndex = 19;
             this.btn_review.Text = "Review Game";
             this.btn_review.UseVisualStyleBackColor = true;
+            this.btn_review.Visible = false;
             this.btn_review.Click += new System.EventHandler(this.btn_review_Click);
+            // 
+            // btn_playAgain
+            // 
+            this.btn_playAgain.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_playAgain.Location = new System.Drawing.Point(206, 362);
+            this.btn_playAgain.Name = "btn_playAgain";
+            this.btn_playAgain.Size = new System.Drawing.Size(141, 76);
+            this.btn_playAgain.TabIndex = 20;
+            this.btn_playAgain.Text = "Play Again?";
+            this.btn_playAgain.UseVisualStyleBackColor = true;
+            this.btn_playAgain.Visible = false;
+            this.btn_playAgain.Click += new System.EventHandler(this.btn_playAgain_Click);
             // 
             // Statistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_playAgain);
             this.Controls.Add(this.btn_review);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_ReturnToWelcome);
@@ -255,5 +270,6 @@
         private System.Windows.Forms.Button btn_ReturnToWelcome;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_review;
+        private System.Windows.Forms.Button btn_playAgain;
     }
 }

@@ -140,7 +140,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\BoardImage.png" />
-    <Content Include="Resources\TwoPlayerGames.txt" />
+    <Content Include="SinglePlayerGames.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TwoPlayerGames.txt" />
     <None Include="Resources\BoardImage1.png" />
     <Content Include="Resources\connect4chipGhostBLUE.png" />
     <Content Include="Resources\connect4chipGhostRED.png" />

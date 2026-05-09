@@ -22,6 +22,9 @@ namespace CIS153_FinalProject
         bool gameOver = false;
         WelcomeForm WCForm;
         Statistics statForm;
+        List<Play> listOfPlays = new List<Play>();
+        List<Game> listOfGames = new List<Game>();
+
         public Singleplayer()
         {
             InitializeComponent();
@@ -61,6 +64,8 @@ namespace CIS153_FinalProject
                     {
                         return;
                     }
+                    Play newPlay = new Play(gameBoard.latestPlayRow(col), col, playerTurn);
+                    listOfPlays.Add(newPlay);
                     if (gameBoard.checkWin(1)) //moved inside so i can make it check if collum is full
                     {
                         lbl_playerTurn.Visible = false;
@@ -68,12 +73,22 @@ namespace CIS153_FinalProject
                         lbl_win.Text = gameBoard.getPlayer1().getName() + " Wins!";
                         lbl_win.ForeColor = gameBoard.getPlayer1().getChipColor();
                         lbl_win.Visible = true;
+                        btn_back.Enabled = false;
                         statUpdate(gameBoard.getPlayer1().getId());
+                        Game newGame = new Game(new List<Play>(listOfPlays), gameBoard.getPlayer1().getName(), gameBoard.getPlayer2().getName(), playerTurn);
+                        listOfGames = new List<Game>(readGames());
+                        listOfGames.Add(newGame);
+                        listOfPlays.Clear();
+                        writeGames();
                     }
                     else
                     {
                         nextTurn();
+                        Board tempBoard = (Board)gameBoard.Clone();
                         bot.play(gameBoard);
+                        int botCol = getBotPlay(tempBoard, gameBoard);
+                        newPlay = new Play(gameBoard.latestPlayRow(botCol), botCol, playerTurn);
+                        listOfPlays.Add(newPlay);
                         if (gameBoard.checkWin(2)) //moved inside so i can make it check if collum is full
                         {
                             lbl_playerTurn.Visible = false;
@@ -81,7 +96,13 @@ namespace CIS153_FinalProject
                             lbl_win.Text = gameBoard.getPlayer2().getName() + " Wins!";
                             lbl_win.ForeColor = gameBoard.getPlayer2().getChipColor();
                             lbl_win.Visible = true;
+                            btn_back.Enabled = false;
                             statUpdate(gameBoard.getPlayer2().getId());
+                            Game newGame = new Game(new List<Play>(listOfPlays), gameBoard.getPlayer1().getName(), gameBoard.getPlayer2().getName(), playerTurn);
+                            listOfGames = new List<Game>(readGames());
+                            listOfGames.Add(newGame);
+                            listOfPlays.Clear();
+                            writeGames();
                         }
                         nextTurn();
                     }
@@ -94,6 +115,11 @@ namespace CIS153_FinalProject
                         lbl_win.Visible = true;
                         initializeDisplay();
                         statUpdate(0);
+                        Game newGame = new Game(new List<Play>(listOfPlays), gameBoard.getPlayer1().getName(), gameBoard.getPlayer2().getName(), playerTurn);
+                        listOfGames = new List<Game>(readGames());
+                        listOfGames.Add(newGame);
+                        listOfPlays.Clear();
+                        writeGames();
                     }
                 }
             }
@@ -250,9 +276,9 @@ namespace CIS153_FinalProject
             await Task.Delay(TimeSpan.FromSeconds(3));
 
             //hides the game form and opens statistics
-            this.Hide();
             statForm = new Statistics(this, WCForm);
             statForm.Show();
+            this.Close();
         }
 
         private void SP_displayGhostChip(object sender, EventArgs e)
@@ -297,6 +323,115 @@ namespace CIS153_FinalProject
                     picBox.Image = Image.FromFile("../../Resources/emptyCell.png");
                 }
             }
+        }
+        private List<Game> readGames()
+        {
+            try
+            {
+                string fileName = "SinglePlayerGames.txt";
+                string baseDirectoryPath = AppDomain.CurrentDomain.BaseDirectory;
+                string filePath = Path.Combine(baseDirectoryPath, fileName);
+                StreamReader reader = new StreamReader(filePath);
+                string game;
+                string play;
+                char playDelim = '.';
+                char delim = ',';
+                int playDelimPos;
+                int delimPos;
+                List<Play> plays = new List<Play>();
+                List<Game> games = new List<Game>();
+                game = reader.ReadLine();
+                while (game != null)
+                {
+                    Game gameReview = new Game();
+                    delimPos = game.IndexOf(delim);
+                    gameReview.setPlayer1(game.Substring(0, delimPos));
+
+                    game = game.Substring(delimPos + 1);
+                    delimPos = game.IndexOf(delim);
+                    gameReview.setPlayer2(game.Substring(0, delimPos));
+
+                    game = game.Substring(delimPos + 1);
+                    delimPos = game.IndexOf(delim);
+                    gameReview.setWinner(Int32.Parse(game.Substring(0, delimPos)));
+
+                    game = game.Substring(delimPos + 1);
+
+                    plays.Clear();
+                    playDelimPos = game.IndexOf(playDelim);
+                    play = game.Substring(0, playDelimPos);
+                    while (game.IndexOf(playDelim) != -1)
+                    {
+                        Play playReview = new Play();
+                        delimPos = play.IndexOf(delim);
+                        playReview.setRow(Int32.Parse(play.Substring(0, delimPos)));
+                        play = play.Substring(delimPos + 1);
+                        delimPos = play.IndexOf(delim);
+                        playReview.setCol(Int32.Parse(play.Substring(0, delimPos)));
+                        play = play.Substring(delimPos + 1);
+                        playReview.setTurnNum(Int32.Parse(play));
+                        plays.Add(playReview);
+                        game = game.Substring(playDelimPos + 1);
+                        playDelimPos = game.IndexOf(playDelim);
+                        if (playDelimPos != -1)
+                        {
+                            play = game.Substring(0, playDelimPos);
+                        }
+                    }
+                    gameReview.setPlays(new List<Play>(plays));
+                    games.Add(gameReview);
+                    game = reader.ReadLine();
+                    if (game == "\n")
+                    {
+                        game = null;
+                    }
+                }
+                reader.Close();
+                return games;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("ERROR. File Not Found");
+                return new List<Game>();
+            }
+        }
+        public void writeGames()
+        {
+            try
+            {
+                string fileName = "SinglePlayerGames.txt";
+                string baseDirectoryPath = AppDomain.CurrentDomain.BaseDirectory;
+                string filePath = Path.Combine(baseDirectoryPath, fileName);
+                StreamWriter writer = new StreamWriter(filePath);
+                for (int i = 0; i < listOfGames.Count(); i++)
+                {
+                    writer.Write($"{listOfGames[i].getPlayer1()},{listOfGames[i].getPlayer2()},{listOfGames[i].getWinner()},");
+                    for (int j = 0; j < listOfGames[i].getPlays().Count(); j++)
+                    {
+                        writer.Write($"{listOfGames[i].getPlays()[j].getRow()},{listOfGames[i].getPlays()[j].getCol()},{listOfGames[i].getPlays()[j].getTurnNum()}.");
+                    }
+                    writer.Write("\n");
+                }
+                writer.Close();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("ERROR. File Not Found");
+            }
+        }
+        private int getBotPlay(Board prevBoard, Board curBoard)
+        {
+            for (int i = 0; i < prevBoard.getRows(); i++)
+            {
+                for (int j = 0; j < prevBoard.getCols(); j++)
+                {
+                    if (prevBoard.getBoard()[i, j].getCharacter() != curBoard.getBoard()[i, j].getCharacter())
+                    {
+                        return j;
+                    }
+                }
+            }
+            return -1;
         }
     }
 }

@@ -132,6 +132,7 @@
             this.btn_back.TabIndex = 109;
             this.btn_back.Text = "<--";
             this.btn_back.UseVisualStyleBackColor = true;
+            this.btn_back.Click += new System.EventHandler(this.btn_back_Click);
             // 
             // lbl_win
             // 
@@ -152,6 +153,7 @@
             this.btn_Exit.TabIndex = 63;
             this.btn_Exit.Text = "Exit Program";
             this.btn_Exit.UseVisualStyleBackColor = true;
+            this.btn_Exit.Click += new System.EventHandler(this.btn_Exit_Click);
             // 
             // pictureBox1
             // 

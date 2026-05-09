@@ -74,6 +74,7 @@ namespace CIS153_FinalProject
                 {
                     lbl_playerTurn.Visible = false;
                     gameOver = true;
+                    btn_back.Enabled = false;
                     if (playerTurn == gameBoard.getPlayer1().getId())
                     {
                         lbl_win.Text = gameBoard.getPlayer1().getName() + " Wins!";
@@ -261,8 +262,8 @@ namespace CIS153_FinalProject
 
             //hides the game form and opens statistics
             statForm = new Statistics(this, WCForm);
-            this.Hide();
             statForm.Show();
+            this.Close();
         }
 
 
@@ -281,7 +282,11 @@ namespace CIS153_FinalProject
         {
             try
             {
-                StreamReader reader = new StreamReader("../../Resources/TwoPlayerGames.txt");
+                string fileName = "TwoPlayerGames.txt";
+                string baseDirectoryPath = AppDomain.CurrentDomain.BaseDirectory;
+                string filePath = Path.Combine(baseDirectoryPath, fileName);
+                StreamReader reader = new StreamReader(filePath);
+                //StreamReader reader = new StreamReader("../../Resources/TwoPlayerGames.txt");
                 string game;
                 string play;
                 char playDelim = '.';
@@ -344,12 +349,16 @@ namespace CIS153_FinalProject
                 Debug.WriteLine("ERROR. File Not Found");
                 return new List<Game>();
             }
-}
-public void writeGames()
+        }
+        public void writeGames()
         {
             try
             {
-                StreamWriter writer = new StreamWriter("../../Resources/TwoPlayerGames.txt");
+                string fileName = "TwoPlayerGames.txt";
+                string baseDirectoryPath = AppDomain.CurrentDomain.BaseDirectory;
+                string filePath = Path.Combine(baseDirectoryPath, fileName);
+                StreamWriter writer = new StreamWriter(filePath);
+                //StreamWriter writer = new StreamWriter("../../Resources/TwoPlayerGames.txt");
                 for (int i = 0; i < listOfGames.Count(); i++)
                 {
                     writer.Write($"{listOfGames[i].getPlayer1()},{listOfGames[i].getPlayer2()},{listOfGames[i].getWinner()},");

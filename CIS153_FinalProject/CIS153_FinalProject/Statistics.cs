@@ -37,6 +37,8 @@ namespace CIS153_FinalProject
             readDisplayStats();
             single = s;
             WCForm = WCF;
+            btn_review.Visible = true;
+            btn_playAgain.Visible = true;
         }
 
         public Statistics(Twoplayer tp, WelcomeForm WCF)
@@ -45,6 +47,8 @@ namespace CIS153_FinalProject
             readDisplayStats();
             twoplayer = tp;
             WCForm = WCF;
+            btn_review.Visible = true;
+            btn_playAgain.Visible = true;
         }
 
         private void btn_Exit_Click(object sender, EventArgs e)
@@ -146,17 +150,35 @@ namespace CIS153_FinalProject
         {
             if (single != null)
             {
-                single.Show();
+                GameReview gameReview = new GameReview(this, WCForm, 1);
+                gameReview.Show();
+                this.Hide();
+                //single.Show();
                 click1.Play();
             }
             else if (twoplayer != null)
             {
-                GameReview gameReview = new GameReview(this, 2);
+                GameReview gameReview = new GameReview(this, WCForm, 2);
                 gameReview.Show();
+                this.Hide();
                 //twoplayer.Show();
                 click1.Play();
             }
-            
+        }
+
+        private void btn_playAgain_Click(object sender, EventArgs e)
+        {
+            if (single != null)
+            {
+                Singleplayer newGame = new Singleplayer(WCForm);
+                newGame.Show();
+            }
+            else if (twoplayer != null)
+            {
+                Twoplayer newGame = new Twoplayer(WCForm);
+                newGame.Show();
+            }
+            this.Close();
         }
     }
 }

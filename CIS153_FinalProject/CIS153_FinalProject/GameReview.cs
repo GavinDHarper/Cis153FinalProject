@@ -14,6 +14,8 @@ namespace CIS153_FinalProject
 {
     public partial class GameReview : Form
     {
+        private WelcomeForm WCForm;
+        private Statistics statForm;
         private List<Game> listOfGames = new List<Game>();
         private Game game;
         private int turn;
@@ -22,17 +24,19 @@ namespace CIS153_FinalProject
         {
             InitializeComponent();
         }
-        public GameReview(Statistics s, int gameMode)
+        public GameReview(Statistics s, WelcomeForm wf, int gameMode)
         {
-            Statistics statistics = s;
+            WCForm = wf;
+            statForm = s;
             InitializeComponent();
             if (gameMode == 1)
             {
-
+                listOfGames = readGames("SinglePlayerGames.txt");
+                game = listOfGames[listOfGames.Count() - 1];
             }
             else
             {
-                listOfGames = readGames2P();
+                listOfGames = readGames("TwoPlayerGames.txt");
                 game = listOfGames[listOfGames.Count() - 1];
             }
             if (game.getWinner() == 1)
@@ -64,11 +68,15 @@ namespace CIS153_FinalProject
             populateBoard(turn);
         }
 
-        private List<Game> readGames2P()
+        private List<Game> readGames(string fileName)
         {
             try
             {
-                StreamReader reader = new StreamReader("../../Resources/TwoPlayerGames.txt");
+                string fName = fileName;
+                string baseDirectoryPath = AppDomain.CurrentDomain.BaseDirectory;
+                string filePath = Path.Combine(baseDirectoryPath, fileName);
+                StreamReader reader = new StreamReader(filePath);
+                //StreamReader reader = new StreamReader("../../Resources/TwoPlayerGames.txt");
                 string game;
                 string play;
                 char playDelim = '.';
@@ -132,7 +140,6 @@ namespace CIS153_FinalProject
                 return new List<Game>();
             }
         }
-
         private void btn_previousPlay_Click(object sender, EventArgs e)
         {
             turn--;
@@ -223,6 +230,15 @@ namespace CIS153_FinalProject
                     picBox.Image = Image.FromFile("../../Resources/connect4chipIconBLUE.png");
                 }
             }
+        }
+        private void btn_back_Click(object sender, EventArgs e)
+        {
+            statForm.Show();
+            this.Close();
+        }
+        private void btn_Exit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

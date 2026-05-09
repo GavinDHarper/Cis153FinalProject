@@ -55,7 +55,10 @@ namespace CIS153_FinalProject
         {
             return player2;
         }
-
+        public Cell[,] getBoard()
+        {
+            return board;
+        }
         //--------------------------------------
         //          Constructors
         //--------------------------------------
