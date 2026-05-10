@@ -137,26 +137,29 @@ namespace CIS153_FinalProject
         }
         private void SP_displayGhostChip(object sender, EventArgs e)
         {
-            int col;
-            PictureBox pic = sender as PictureBox;
-            col = Int32.Parse(pic.Tag.ToString());
-            for (int row = 0; row < gameBoard.getRows(); row++)
+            if (!gameOver)
             {
-                if (gameBoard.board[row, col].isOpen())
+                int col;
+                PictureBox pic = sender as PictureBox;
+                col = Int32.Parse(pic.Tag.ToString());
+                for (int row = 0; row < gameBoard.getRows(); row++)
                 {
-                    string picBoxPath = "SP_" + row.ToString() + col.ToString();
-                    //Console.WriteLine(picBoxPath);
-                    PictureBox picBox = (PictureBox)this.Controls[picBoxPath];
+                    if (gameBoard.board[row, col].isOpen())
                     {
-                        if (playerTurn == gameBoard.getPlayer1().getId())
+                        string picBoxPath = "SP_" + row.ToString() + col.ToString();
+                        //Console.WriteLine(picBoxPath);
+                        PictureBox picBox = (PictureBox)this.Controls[picBoxPath];
                         {
-                            picBox.Image = Image.FromFile("../../Resources/connect4chipGhostRED.png");
-                            return;
-                        }
-                        else
-                        {
-                            picBox.Image = Image.FromFile("../../Resources/connect4chipGhostBLUE.png");
-                            return;
+                            if (playerTurn == gameBoard.getPlayer1().getId())
+                            {
+                                picBox.Image = Image.FromFile("../../Resources/connect4chipGhostRED.png");
+                                return;
+                            }
+                            else
+                            {
+                                picBox.Image = Image.FromFile("../../Resources/connect4chipGhostBLUE.png");
+                                return;
+                            }
                         }
                     }
                 }
@@ -255,7 +258,7 @@ namespace CIS153_FinalProject
             click1.Play();
         }
 
-        public async Task showStats()
+        public async Task showStats() 
         {
             //keeps game screen up for a few seconds
             await Task.Delay(TimeSpan.FromSeconds(3));
