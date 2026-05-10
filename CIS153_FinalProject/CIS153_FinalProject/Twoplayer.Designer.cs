@@ -75,6 +75,7 @@
             this.lbl_win = new System.Windows.Forms.Label();
             this.btn_back = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.PB_BoardImage = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.SP_00)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_20)).BeginInit();
@@ -118,6 +119,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.SP_16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_06)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_BoardImage)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_Exit
@@ -134,7 +136,7 @@
             // SP_00
             // 
             this.SP_00.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_00.Location = new System.Drawing.Point(98, 344);
+            this.SP_00.Location = new System.Drawing.Point(68, 360);
             this.SP_00.Margin = new System.Windows.Forms.Padding(2);
             this.SP_00.Name = "SP_00";
             this.SP_00.Size = new System.Drawing.Size(52, 48);
@@ -149,7 +151,7 @@
             // SP_10
             // 
             this.SP_10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_10.Location = new System.Drawing.Point(98, 292);
+            this.SP_10.Location = new System.Drawing.Point(68, 307);
             this.SP_10.Margin = new System.Windows.Forms.Padding(2);
             this.SP_10.Name = "SP_10";
             this.SP_10.Size = new System.Drawing.Size(52, 48);
@@ -164,7 +166,7 @@
             // SP_20
             // 
             this.SP_20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_20.Location = new System.Drawing.Point(98, 240);
+            this.SP_20.Location = new System.Drawing.Point(68, 254);
             this.SP_20.Margin = new System.Windows.Forms.Padding(2);
             this.SP_20.Name = "SP_20";
             this.SP_20.Size = new System.Drawing.Size(52, 48);
@@ -179,7 +181,7 @@
             // SP_30
             // 
             this.SP_30.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_30.Location = new System.Drawing.Point(98, 188);
+            this.SP_30.Location = new System.Drawing.Point(68, 200);
             this.SP_30.Margin = new System.Windows.Forms.Padding(2);
             this.SP_30.Name = "SP_30";
             this.SP_30.Size = new System.Drawing.Size(52, 48);
@@ -194,7 +196,7 @@
             // SP_40
             // 
             this.SP_40.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_40.Location = new System.Drawing.Point(98, 136);
+            this.SP_40.Location = new System.Drawing.Point(68, 148);
             this.SP_40.Margin = new System.Windows.Forms.Padding(2);
             this.SP_40.Name = "SP_40";
             this.SP_40.Size = new System.Drawing.Size(52, 48);
@@ -209,7 +211,7 @@
             // SP_50
             // 
             this.SP_50.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_50.Location = new System.Drawing.Point(98, 84);
+            this.SP_50.Location = new System.Drawing.Point(68, 92);
             this.SP_50.Margin = new System.Windows.Forms.Padding(2);
             this.SP_50.Name = "SP_50";
             this.SP_50.Size = new System.Drawing.Size(52, 48);
@@ -224,7 +226,7 @@
             // SP_51
             // 
             this.SP_51.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_51.Location = new System.Drawing.Point(154, 84);
+            this.SP_51.Location = new System.Drawing.Point(136, 92);
             this.SP_51.Margin = new System.Windows.Forms.Padding(2);
             this.SP_51.Name = "SP_51";
             this.SP_51.Size = new System.Drawing.Size(52, 48);
@@ -239,7 +241,7 @@
             // SP_41
             // 
             this.SP_41.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_41.Location = new System.Drawing.Point(154, 136);
+            this.SP_41.Location = new System.Drawing.Point(136, 148);
             this.SP_41.Margin = new System.Windows.Forms.Padding(2);
             this.SP_41.Name = "SP_41";
             this.SP_41.Size = new System.Drawing.Size(52, 48);
@@ -254,7 +256,7 @@
             // SP_31
             // 
             this.SP_31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_31.Location = new System.Drawing.Point(154, 188);
+            this.SP_31.Location = new System.Drawing.Point(136, 200);
             this.SP_31.Margin = new System.Windows.Forms.Padding(2);
             this.SP_31.Name = "SP_31";
             this.SP_31.Size = new System.Drawing.Size(52, 48);
@@ -269,7 +271,7 @@
             // SP_21
             // 
             this.SP_21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_21.Location = new System.Drawing.Point(154, 240);
+            this.SP_21.Location = new System.Drawing.Point(136, 254);
             this.SP_21.Margin = new System.Windows.Forms.Padding(2);
             this.SP_21.Name = "SP_21";
             this.SP_21.Size = new System.Drawing.Size(52, 48);
@@ -284,7 +286,7 @@
             // SP_11
             // 
             this.SP_11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_11.Location = new System.Drawing.Point(154, 292);
+            this.SP_11.Location = new System.Drawing.Point(136, 307);
             this.SP_11.Margin = new System.Windows.Forms.Padding(2);
             this.SP_11.Name = "SP_11";
             this.SP_11.Size = new System.Drawing.Size(52, 48);
@@ -299,7 +301,7 @@
             // SP_01
             // 
             this.SP_01.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_01.Location = new System.Drawing.Point(154, 344);
+            this.SP_01.Location = new System.Drawing.Point(136, 360);
             this.SP_01.Margin = new System.Windows.Forms.Padding(2);
             this.SP_01.Name = "SP_01";
             this.SP_01.Size = new System.Drawing.Size(52, 48);
@@ -314,7 +316,7 @@
             // SP_52
             // 
             this.SP_52.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_52.Location = new System.Drawing.Point(211, 84);
+            this.SP_52.Location = new System.Drawing.Point(206, 92);
             this.SP_52.Margin = new System.Windows.Forms.Padding(2);
             this.SP_52.Name = "SP_52";
             this.SP_52.Size = new System.Drawing.Size(52, 48);
@@ -329,7 +331,7 @@
             // SP_42
             // 
             this.SP_42.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_42.Location = new System.Drawing.Point(211, 136);
+            this.SP_42.Location = new System.Drawing.Point(206, 146);
             this.SP_42.Margin = new System.Windows.Forms.Padding(2);
             this.SP_42.Name = "SP_42";
             this.SP_42.Size = new System.Drawing.Size(52, 48);
@@ -344,7 +346,7 @@
             // SP_32
             // 
             this.SP_32.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_32.Location = new System.Drawing.Point(211, 188);
+            this.SP_32.Location = new System.Drawing.Point(206, 200);
             this.SP_32.Margin = new System.Windows.Forms.Padding(2);
             this.SP_32.Name = "SP_32";
             this.SP_32.Size = new System.Drawing.Size(52, 48);
@@ -359,7 +361,7 @@
             // SP_22
             // 
             this.SP_22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_22.Location = new System.Drawing.Point(211, 240);
+            this.SP_22.Location = new System.Drawing.Point(206, 254);
             this.SP_22.Margin = new System.Windows.Forms.Padding(2);
             this.SP_22.Name = "SP_22";
             this.SP_22.Size = new System.Drawing.Size(52, 48);
@@ -374,7 +376,7 @@
             // SP_12
             // 
             this.SP_12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_12.Location = new System.Drawing.Point(211, 292);
+            this.SP_12.Location = new System.Drawing.Point(206, 307);
             this.SP_12.Margin = new System.Windows.Forms.Padding(2);
             this.SP_12.Name = "SP_12";
             this.SP_12.Size = new System.Drawing.Size(52, 48);
@@ -389,7 +391,7 @@
             // SP_02
             // 
             this.SP_02.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_02.Location = new System.Drawing.Point(211, 344);
+            this.SP_02.Location = new System.Drawing.Point(206, 360);
             this.SP_02.Margin = new System.Windows.Forms.Padding(2);
             this.SP_02.Name = "SP_02";
             this.SP_02.Size = new System.Drawing.Size(52, 48);
@@ -404,7 +406,7 @@
             // SP_53
             // 
             this.SP_53.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_53.Location = new System.Drawing.Point(267, 84);
+            this.SP_53.Location = new System.Drawing.Point(270, 92);
             this.SP_53.Margin = new System.Windows.Forms.Padding(2);
             this.SP_53.Name = "SP_53";
             this.SP_53.Size = new System.Drawing.Size(52, 48);
@@ -419,7 +421,7 @@
             // SP_43
             // 
             this.SP_43.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_43.Location = new System.Drawing.Point(267, 136);
+            this.SP_43.Location = new System.Drawing.Point(270, 146);
             this.SP_43.Margin = new System.Windows.Forms.Padding(2);
             this.SP_43.Name = "SP_43";
             this.SP_43.Size = new System.Drawing.Size(52, 48);
@@ -434,7 +436,7 @@
             // SP_33
             // 
             this.SP_33.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_33.Location = new System.Drawing.Point(267, 188);
+            this.SP_33.Location = new System.Drawing.Point(270, 200);
             this.SP_33.Margin = new System.Windows.Forms.Padding(2);
             this.SP_33.Name = "SP_33";
             this.SP_33.Size = new System.Drawing.Size(52, 48);
@@ -449,7 +451,7 @@
             // SP_23
             // 
             this.SP_23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_23.Location = new System.Drawing.Point(267, 240);
+            this.SP_23.Location = new System.Drawing.Point(270, 254);
             this.SP_23.Margin = new System.Windows.Forms.Padding(2);
             this.SP_23.Name = "SP_23";
             this.SP_23.Size = new System.Drawing.Size(52, 48);
@@ -464,7 +466,7 @@
             // SP_13
             // 
             this.SP_13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_13.Location = new System.Drawing.Point(267, 292);
+            this.SP_13.Location = new System.Drawing.Point(270, 307);
             this.SP_13.Margin = new System.Windows.Forms.Padding(2);
             this.SP_13.Name = "SP_13";
             this.SP_13.Size = new System.Drawing.Size(52, 48);
@@ -479,7 +481,7 @@
             // SP_03
             // 
             this.SP_03.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_03.Location = new System.Drawing.Point(267, 344);
+            this.SP_03.Location = new System.Drawing.Point(270, 360);
             this.SP_03.Margin = new System.Windows.Forms.Padding(2);
             this.SP_03.Name = "SP_03";
             this.SP_03.Size = new System.Drawing.Size(52, 48);
@@ -494,7 +496,7 @@
             // SP_54
             // 
             this.SP_54.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_54.Location = new System.Drawing.Point(323, 84);
+            this.SP_54.Location = new System.Drawing.Point(336, 92);
             this.SP_54.Margin = new System.Windows.Forms.Padding(2);
             this.SP_54.Name = "SP_54";
             this.SP_54.Size = new System.Drawing.Size(52, 48);
@@ -509,7 +511,7 @@
             // SP_44
             // 
             this.SP_44.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_44.Location = new System.Drawing.Point(323, 136);
+            this.SP_44.Location = new System.Drawing.Point(336, 146);
             this.SP_44.Margin = new System.Windows.Forms.Padding(2);
             this.SP_44.Name = "SP_44";
             this.SP_44.Size = new System.Drawing.Size(52, 48);
@@ -524,7 +526,7 @@
             // SP_34
             // 
             this.SP_34.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_34.Location = new System.Drawing.Point(323, 188);
+            this.SP_34.Location = new System.Drawing.Point(336, 200);
             this.SP_34.Margin = new System.Windows.Forms.Padding(2);
             this.SP_34.Name = "SP_34";
             this.SP_34.Size = new System.Drawing.Size(52, 48);
@@ -539,7 +541,7 @@
             // SP_24
             // 
             this.SP_24.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_24.Location = new System.Drawing.Point(323, 240);
+            this.SP_24.Location = new System.Drawing.Point(336, 254);
             this.SP_24.Margin = new System.Windows.Forms.Padding(2);
             this.SP_24.Name = "SP_24";
             this.SP_24.Size = new System.Drawing.Size(52, 48);
@@ -554,7 +556,7 @@
             // SP_14
             // 
             this.SP_14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_14.Location = new System.Drawing.Point(323, 292);
+            this.SP_14.Location = new System.Drawing.Point(336, 307);
             this.SP_14.Margin = new System.Windows.Forms.Padding(2);
             this.SP_14.Name = "SP_14";
             this.SP_14.Size = new System.Drawing.Size(52, 48);
@@ -569,7 +571,7 @@
             // SP_04
             // 
             this.SP_04.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_04.Location = new System.Drawing.Point(323, 344);
+            this.SP_04.Location = new System.Drawing.Point(336, 360);
             this.SP_04.Margin = new System.Windows.Forms.Padding(2);
             this.SP_04.Name = "SP_04";
             this.SP_04.Size = new System.Drawing.Size(52, 48);
@@ -584,7 +586,7 @@
             // SP_55
             // 
             this.SP_55.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_55.Location = new System.Drawing.Point(380, 84);
+            this.SP_55.Location = new System.Drawing.Point(403, 92);
             this.SP_55.Margin = new System.Windows.Forms.Padding(2);
             this.SP_55.Name = "SP_55";
             this.SP_55.Size = new System.Drawing.Size(52, 48);
@@ -599,7 +601,7 @@
             // SP_45
             // 
             this.SP_45.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_45.Location = new System.Drawing.Point(380, 136);
+            this.SP_45.Location = new System.Drawing.Point(403, 146);
             this.SP_45.Margin = new System.Windows.Forms.Padding(2);
             this.SP_45.Name = "SP_45";
             this.SP_45.Size = new System.Drawing.Size(52, 48);
@@ -614,7 +616,7 @@
             // SP_35
             // 
             this.SP_35.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_35.Location = new System.Drawing.Point(380, 188);
+            this.SP_35.Location = new System.Drawing.Point(403, 200);
             this.SP_35.Margin = new System.Windows.Forms.Padding(2);
             this.SP_35.Name = "SP_35";
             this.SP_35.Size = new System.Drawing.Size(52, 48);
@@ -629,7 +631,7 @@
             // SP_25
             // 
             this.SP_25.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_25.Location = new System.Drawing.Point(380, 240);
+            this.SP_25.Location = new System.Drawing.Point(403, 254);
             this.SP_25.Margin = new System.Windows.Forms.Padding(2);
             this.SP_25.Name = "SP_25";
             this.SP_25.Size = new System.Drawing.Size(52, 48);
@@ -644,7 +646,7 @@
             // SP_15
             // 
             this.SP_15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_15.Location = new System.Drawing.Point(380, 292);
+            this.SP_15.Location = new System.Drawing.Point(403, 307);
             this.SP_15.Margin = new System.Windows.Forms.Padding(2);
             this.SP_15.Name = "SP_15";
             this.SP_15.Size = new System.Drawing.Size(52, 48);
@@ -659,7 +661,7 @@
             // SP_05
             // 
             this.SP_05.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_05.Location = new System.Drawing.Point(380, 344);
+            this.SP_05.Location = new System.Drawing.Point(403, 360);
             this.SP_05.Margin = new System.Windows.Forms.Padding(2);
             this.SP_05.Name = "SP_05";
             this.SP_05.Size = new System.Drawing.Size(52, 48);
@@ -674,7 +676,7 @@
             // SP_56
             // 
             this.SP_56.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_56.Location = new System.Drawing.Point(436, 84);
+            this.SP_56.Location = new System.Drawing.Point(469, 92);
             this.SP_56.Margin = new System.Windows.Forms.Padding(2);
             this.SP_56.Name = "SP_56";
             this.SP_56.Size = new System.Drawing.Size(52, 48);
@@ -689,7 +691,7 @@
             // SP_46
             // 
             this.SP_46.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_46.Location = new System.Drawing.Point(436, 136);
+            this.SP_46.Location = new System.Drawing.Point(469, 146);
             this.SP_46.Margin = new System.Windows.Forms.Padding(2);
             this.SP_46.Name = "SP_46";
             this.SP_46.Size = new System.Drawing.Size(52, 48);
@@ -704,7 +706,7 @@
             // SP_36
             // 
             this.SP_36.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_36.Location = new System.Drawing.Point(436, 188);
+            this.SP_36.Location = new System.Drawing.Point(469, 200);
             this.SP_36.Margin = new System.Windows.Forms.Padding(2);
             this.SP_36.Name = "SP_36";
             this.SP_36.Size = new System.Drawing.Size(52, 48);
@@ -719,7 +721,7 @@
             // SP_26
             // 
             this.SP_26.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_26.Location = new System.Drawing.Point(436, 240);
+            this.SP_26.Location = new System.Drawing.Point(470, 254);
             this.SP_26.Margin = new System.Windows.Forms.Padding(2);
             this.SP_26.Name = "SP_26";
             this.SP_26.Size = new System.Drawing.Size(52, 48);
@@ -734,7 +736,7 @@
             // SP_16
             // 
             this.SP_16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_16.Location = new System.Drawing.Point(436, 292);
+            this.SP_16.Location = new System.Drawing.Point(469, 307);
             this.SP_16.Margin = new System.Windows.Forms.Padding(2);
             this.SP_16.Name = "SP_16";
             this.SP_16.Size = new System.Drawing.Size(52, 48);
@@ -749,7 +751,7 @@
             // SP_06
             // 
             this.SP_06.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SP_06.Location = new System.Drawing.Point(436, 344);
+            this.SP_06.Location = new System.Drawing.Point(469, 360);
             this.SP_06.Margin = new System.Windows.Forms.Padding(2);
             this.SP_06.Name = "SP_06";
             this.SP_06.Size = new System.Drawing.Size(52, 48);
@@ -765,7 +767,7 @@
             // 
             this.lbl_playerTurn.AutoSize = true;
             this.lbl_playerTurn.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_playerTurn.Location = new System.Drawing.Point(100, 35);
+            this.lbl_playerTurn.Location = new System.Drawing.Point(80, 28);
             this.lbl_playerTurn.Name = "lbl_playerTurn";
             this.lbl_playerTurn.Size = new System.Drawing.Size(181, 37);
             this.lbl_playerTurn.TabIndex = 60;
@@ -776,7 +778,7 @@
             // 
             this.lbl_win.AutoSize = true;
             this.lbl_win.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_win.Location = new System.Drawing.Point(555, 188);
+            this.lbl_win.Location = new System.Drawing.Point(565, 204);
             this.lbl_win.Name = "lbl_win";
             this.lbl_win.Size = new System.Drawing.Size(197, 37);
             this.lbl_win.TabIndex = 61;
@@ -785,9 +787,9 @@
             // 
             // btn_back
             // 
-            this.btn_back.Location = new System.Drawing.Point(19, 36);
+            this.btn_back.Location = new System.Drawing.Point(8, 23);
             this.btn_back.Name = "btn_back";
-            this.btn_back.Size = new System.Drawing.Size(64, 35);
+            this.btn_back.Size = new System.Drawing.Size(63, 41);
             this.btn_back.TabIndex = 62;
             this.btn_back.Text = "<--";
             this.btn_back.UseVisualStyleBackColor = true;
@@ -797,13 +799,23 @@
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Image = global::CIS153_FinalProject.Properties.Resources.connect4chipIconRED;
-            this.pictureBox1.Location = new System.Drawing.Point(610, 35);
+            this.pictureBox1.Location = new System.Drawing.Point(598, 67);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(111, 114);
+            this.pictureBox1.Size = new System.Drawing.Size(117, 119);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 59;
             this.pictureBox1.TabStop = false;
+            // 
+            // PB_BoardImage
+            // 
+            this.PB_BoardImage.BackColor = System.Drawing.Color.Transparent;
+            this.PB_BoardImage.Image = global::CIS153_FinalProject.Properties.Resources.BoardImage;
+            this.PB_BoardImage.Location = new System.Drawing.Point(45, 63);
+            this.PB_BoardImage.Name = "PB_BoardImage";
+            this.PB_BoardImage.Size = new System.Drawing.Size(500, 375);
+            this.PB_BoardImage.TabIndex = 113;
+            this.PB_BoardImage.TabStop = false;
             // 
             // Twoplayer
             // 
@@ -857,6 +869,7 @@
             this.Controls.Add(this.SP_10);
             this.Controls.Add(this.SP_00);
             this.Controls.Add(this.btn_Exit);
+            this.Controls.Add(this.PB_BoardImage);
             this.Name = "Twoplayer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Tag = "3";
@@ -907,6 +920,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.SP_16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_06)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_BoardImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -961,5 +975,6 @@
         private System.Windows.Forms.Label lbl_win;
         private System.Windows.Forms.Button btn_back;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox PB_BoardImage;
     }
 }
