@@ -46,6 +46,8 @@
             this.btn_review = new System.Windows.Forms.Button();
             this.btn_playAgain = new System.Windows.Forms.Button();
             this.lbl_win = new System.Windows.Forms.Label();
+            this.btn_matchHistory = new System.Windows.Forms.Button();
+            this.btn_reset = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_Exit
@@ -196,9 +198,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(280, 54);
+            this.label1.Size = new System.Drawing.Size(683, 54);
             this.label1.TabIndex = 18;
-            this.label1.Text = "Game Stats";
+            this.label1.Text = "Game Stats Against Computer";
             // 
             // btn_review
             // 
@@ -235,11 +237,36 @@
             this.lbl_win.Text = "Win Display";
             this.lbl_win.Visible = false;
             // 
+            // btn_matchHistory
+            // 
+            this.btn_matchHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_matchHistory.Location = new System.Drawing.Point(647, 280);
+            this.btn_matchHistory.Name = "btn_matchHistory";
+            this.btn_matchHistory.Size = new System.Drawing.Size(141, 76);
+            this.btn_matchHistory.TabIndex = 111;
+            this.btn_matchHistory.Text = "Match History";
+            this.btn_matchHistory.UseVisualStyleBackColor = true;
+            this.btn_matchHistory.Visible = false;
+            this.btn_matchHistory.Click += new System.EventHandler(this.btn_matchHistory_Click);
+            // 
+            // btn_reset
+            // 
+            this.btn_reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_reset.Location = new System.Drawing.Point(12, 362);
+            this.btn_reset.Name = "btn_reset";
+            this.btn_reset.Size = new System.Drawing.Size(141, 76);
+            this.btn_reset.TabIndex = 112;
+            this.btn_reset.Text = "Reset Stats";
+            this.btn_reset.UseVisualStyleBackColor = true;
+            this.btn_reset.Click += new System.EventHandler(this.btn_reset_Click);
+            // 
             // Statistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_reset);
+            this.Controls.Add(this.btn_matchHistory);
             this.Controls.Add(this.lbl_win);
             this.Controls.Add(this.btn_playAgain);
             this.Controls.Add(this.btn_review);
@@ -287,5 +314,7 @@
         private System.Windows.Forms.Button btn_review;
         private System.Windows.Forms.Button btn_playAgain;
         private System.Windows.Forms.Label lbl_win;
+        private System.Windows.Forms.Button btn_matchHistory;
+        private System.Windows.Forms.Button btn_reset;
     }
 }

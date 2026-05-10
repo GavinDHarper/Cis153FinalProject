@@ -389,7 +389,7 @@ namespace CIS153_FinalProject
 
         private void Twoplayer_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (gameOver != true)
+            if (!gameOver)
             { 
                 WCForm.Show();
             }

@@ -57,6 +57,12 @@
     <Compile Include="GameReview.Designer.cs">
       <DependentUpon>GameReview.cs</DependentUpon>
     </Compile>
+    <Compile Include="MatchHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MatchHistory.Designer.cs">
+      <DependentUpon>MatchHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Play.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Statistics.cs">
@@ -87,6 +93,9 @@
     </Compile>
     <EmbeddedResource Include="GameReview.resx">
       <DependentUpon>GameReview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MatchHistory.resx">
+      <DependentUpon>MatchHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

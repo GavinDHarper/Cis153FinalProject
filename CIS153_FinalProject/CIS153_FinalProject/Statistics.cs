@@ -19,6 +19,7 @@ namespace CIS153_FinalProject
         WelcomeForm WCForm;
         Singleplayer single;
         Twoplayer twoplayer;
+        bool playAgain = false;
         public Statistics()
         {
             InitializeComponent();
@@ -29,6 +30,7 @@ namespace CIS153_FinalProject
             InitializeComponent();
             readDisplayStats();
             WCForm = WCF;
+            btn_matchHistory.Visible = true;
         }
 
         public Statistics(Singleplayer s, WelcomeForm WCF, string winner, Color winnerColor)
@@ -90,33 +92,36 @@ namespace CIS153_FinalProject
                 Debug.WriteLine(filePath);
                 string line = file.ReadLine();
 
-                string gamesPlayed;
-                string playerWins;
-                string computerWins;
-                string ties;
+                string gamesPlayed = "0";
+                string playerWins = "0";
+                string computerWins = "0";
+                string ties = "0";
                 double playerPercent;
                 double computerPercent;
+                if (line != null)
+                {
+                    int comma;
+                    char delim = ',';
 
-                int comma;
-                char delim = ',';
+                    //get games played
+                    comma = line.IndexOf(delim);
+                    gamesPlayed = line.Substring(0, comma);
+                    line = line.Substring(comma + 1);
 
-                //get games played
-                comma = line.IndexOf(delim);
-                gamesPlayed = line.Substring(0, comma);
-                line = line.Substring(comma + 1);
+                    //get playerWins
+                    comma = line.IndexOf(delim);
+                    playerWins = line.Substring(0, comma);
+                    line = line.Substring(comma + 1);
 
-                //get playerWins
-                comma = line.IndexOf(delim);
-                playerWins = line.Substring(0, comma);
-                line = line.Substring(comma + 1);
+                    //get computerWins
+                    comma = line.IndexOf(delim);
+                    computerWins = line.Substring(0, comma);
+                    line = line.Substring(comma + 1);
 
-                //get computerWins
-                comma = line.IndexOf(delim);
-                computerWins = line.Substring(0, comma);
-                line = line.Substring(comma + 1);
-
-                //get ties
-                ties = line;
+                    //get ties
+                    ties = line;
+                }
+                file.Close();
 
                 //calculations
                 if (Double.Parse(gamesPlayed) > 0)
@@ -174,6 +179,8 @@ namespace CIS153_FinalProject
 
         private void btn_playAgain_Click(object sender, EventArgs e)
         {
+            click1.Play();
+            playAgain = true;
             if (single != null)
             {
                 Singleplayer newGame = new Singleplayer(WCForm);
@@ -189,7 +196,42 @@ namespace CIS153_FinalProject
 
         private void Statistics_FormClosing(object sender, FormClosingEventArgs e)
         {
-            WCForm.Show();
+            if (!playAgain)
+            {
+                WCForm.Show();
+            }
+        }
+
+        private void btn_matchHistory_Click(object sender, EventArgs e)
+        {
+            click1.Play();
+            MatchHistory matchHistory = new MatchHistory(WCForm, this);
+            matchHistory.Show();
+            this.Hide();
+        }
+
+        private void btn_reset_Click(object sender, EventArgs e)
+        {
+            click1.Play();
+            resetStats();
+            readDisplayStats();
+        }
+
+        public void resetStats()
+        {
+            try 
+            {
+                string fileName = "GameStats.txt";
+                string baseDirectoryPath = AppDomain.CurrentDomain.BaseDirectory;
+                string filePath = Path.Combine(baseDirectoryPath, fileName);
+                StreamWriter writer = new StreamWriter(filePath);
+                writer.WriteLine($"{0}, {0}, {0}, {0}");
+                writer.Close();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("ERROR. File Not Found");
+            }
         }
     }
 }

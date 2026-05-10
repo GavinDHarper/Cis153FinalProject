@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,12 +15,16 @@ namespace CIS153_FinalProject
 {
     public partial class GameReview : Form
     {
-        private WelcomeForm WCForm;
-        private Statistics statForm;
+        WelcomeForm WCForm;
+        Statistics statForm;
+        MatchHistory matchHistory;
         private List<Game> listOfGames = new List<Game>();
         private Game game;
         private int turn;
         private int plays;
+        SoundPlayer click1 = new SoundPlayer("click1.wav");
+        int backButtonNum = 0;
+
         public GameReview()
         {
             InitializeComponent();
@@ -66,6 +71,51 @@ namespace CIS153_FinalProject
             turn = game.getPlays().Count();
             lbl_turnCount.Text = turn + " / " + game.getPlays().Count().ToString();
             populateBoard(turn);
+            backButtonNum = 1;
+        }
+        public GameReview(MatchHistory m, WelcomeForm wf, int gameMode, int gameNum)
+        {
+            WCForm = wf;
+            matchHistory = m;
+            InitializeComponent();
+            if (gameMode == 1)
+            {
+                listOfGames = readGames("SinglePlayerGames.txt");
+                game = listOfGames[gameNum];
+            }
+            else
+            {
+                listOfGames = readGames("TwoPlayerGames.txt");
+                game = listOfGames[gameNum];
+            }
+            if (game.getWinner() == 1)
+            {
+                lbl_win.Text = game.getPlayer1();
+                lbl_win.ForeColor = Color.Red;
+            }
+            else if (game.getWinner() == 2)
+            {
+                lbl_win.Text = game.getPlayer2();
+                lbl_win.ForeColor = Color.Blue;
+            }
+            else
+            {
+                lbl_win.Text = "Tie";
+                lbl_win.ForeColor = Color.Black;
+            }
+            plays = game.getPlays().Count();
+            if (game.getPlays()[plays - 1].getTurnNum() == 1)
+            {
+                pictureBox1.Image = Image.FromFile("../../Resources/connect4chipIconRED.png");
+            }
+            else
+            {
+                pictureBox1.Image = Image.FromFile("../../Resources/connect4chipIconBLUE.png");
+            }
+            turn = game.getPlays().Count();
+            lbl_turnCount.Text = turn + " / " + game.getPlays().Count().ToString();
+            populateBoard(turn);
+            backButtonNum = 2;
         }
 
         private List<Game> readGames(string fileName)
@@ -76,7 +126,6 @@ namespace CIS153_FinalProject
                 string baseDirectoryPath = AppDomain.CurrentDomain.BaseDirectory;
                 string filePath = Path.Combine(baseDirectoryPath, fileName);
                 StreamReader reader = new StreamReader(filePath);
-                //StreamReader reader = new StreamReader("../../Resources/TwoPlayerGames.txt");
                 string game;
                 string play;
                 char playDelim = '.';
@@ -233,7 +282,19 @@ namespace CIS153_FinalProject
         }
         private void btn_back_Click(object sender, EventArgs e)
         {
-            statForm.Show();
+            click1.Play();
+            if (backButtonNum == 1)
+            {
+                statForm.Show();
+            }
+            else if (backButtonNum == 2)
+            {
+                matchHistory.Show();
+            }
+            else
+            {
+                WCForm.Show();
+            }
             this.Close();
         }
         private void btn_Exit_Click(object sender, EventArgs e)
@@ -243,7 +304,18 @@ namespace CIS153_FinalProject
 
         private void GameReview_FormClosing(object sender, FormClosingEventArgs e)
         {
-            statForm.Show();
+            if (backButtonNum == 1)
+            {
+                statForm.Show();
+            }
+            else if (backButtonNum == 2)
+            {
+                matchHistory.Show();
+            }
+            else
+            {
+                WCForm.Show();
+            }
         }
     }
 }

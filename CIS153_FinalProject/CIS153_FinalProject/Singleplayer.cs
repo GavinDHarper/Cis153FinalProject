@@ -24,6 +24,10 @@ namespace CIS153_FinalProject
         Statistics statForm;
         List<Play> listOfPlays = new List<Play>();
         List<Game> listOfGames = new List<Game>();
+        int gamesPlayed;
+        int playerWins;
+        int computerWins;
+        int ties;
 
         public Singleplayer()
         {
@@ -37,6 +41,7 @@ namespace CIS153_FinalProject
             playerTurn = gameBoard.getPlayer1().getId();
             lbl_playerTurn.Text = "Your Turn";
             lbl_playerTurn.ForeColor = gameBoard.getPlayer1().getChipColor();
+            readStats();
         }
 
         private void btn_Exit_Click(object sender, EventArgs e)
@@ -74,7 +79,8 @@ namespace CIS153_FinalProject
                         lbl_win.ForeColor = gameBoard.getPlayer1().getChipColor();
                         lbl_win.Visible = true;
                         btn_back.Enabled = false;
-                        statUpdate(gameBoard.getPlayer1().getId());
+                        writeStats(gameBoard.getPlayer1().getId());
+                        statUpdate();
                         Game newGame = new Game(new List<Play>(listOfPlays), gameBoard.getPlayer1().getName(), gameBoard.getPlayer2().getName(), playerTurn);
                         listOfGames = new List<Game>(readGames());
                         listOfGames.Add(newGame);
@@ -97,7 +103,8 @@ namespace CIS153_FinalProject
                             lbl_win.ForeColor = gameBoard.getPlayer2().getChipColor();
                             lbl_win.Visible = true;
                             btn_back.Enabled = false;
-                            statUpdate(gameBoard.getPlayer2().getId());
+                            writeStats(gameBoard.getPlayer2().getId());
+                            statUpdate();
                             Game newGame = new Game(new List<Play>(listOfPlays), gameBoard.getPlayer1().getName(), gameBoard.getPlayer2().getName(), playerTurn);
                             listOfGames = new List<Game>(readGames());
                             listOfGames.Add(newGame);
@@ -114,7 +121,8 @@ namespace CIS153_FinalProject
                         lbl_win.ForeColor = Color.DarkSlateGray;
                         lbl_win.Visible = true;
                         initializeDisplay();
-                        statUpdate(0);
+                        writeStats(0);
+                        statUpdate();
                         Game newGame = new Game(new List<Play>(listOfPlays), gameBoard.getPlayer1().getName(), gameBoard.getPlayer2().getName(), playerTurn);
                         listOfGames = new List<Game>(readGames());
                         listOfGames.Add(newGame);
@@ -203,7 +211,7 @@ namespace CIS153_FinalProject
             click1.Play();
         }
 
-        private async Task statUpdate(int i)
+        public void readStats()
         {
             try
             {
@@ -216,35 +224,41 @@ namespace CIS153_FinalProject
                 StreamReader file = new StreamReader(filePath);
                 Debug.WriteLine(filePath);
                 string line = file.ReadLine();
+                if (line != null)
+                {
+                    int comma;
+                    char delim = ',';
 
-                int gamesPlayed = 0;
-                int playerWins = 0;
-                int computerWins = 0;
-                int ties = 0;
-                
-                int comma;
-                char delim = ',';
+                    //get games played
+                    comma = line.IndexOf(delim);
+                    gamesPlayed = Int32.Parse(line.Substring(0, comma));
+                    line = line.Substring(comma + 1);
 
-                //get games played
-                comma = line.IndexOf(delim);
-                gamesPlayed = Int32.Parse(line.Substring(0, comma));
-                line = line.Substring(comma + 1);
+                    //get playerWins
+                    comma = line.IndexOf(delim);
+                    playerWins = Int32.Parse(line.Substring(0, comma));
+                    line = line.Substring(comma + 1);
 
-                //get playerWins
-                comma = line.IndexOf(delim);
-                playerWins = Int32.Parse(line.Substring(0, comma));
-                line = line.Substring(comma + 1);
+                    //get computerWins
+                    comma = line.IndexOf(delim);
+                    computerWins = Int32.Parse(line.Substring(0, comma));
+                    line = line.Substring(comma + 1);
 
-                //get computerWins
-                comma = line.IndexOf(delim);
-                computerWins = Int32.Parse(line.Substring(0, comma));
-                line = line.Substring(comma + 1);
-
-                //get ties
-                ties = Int32.Parse(line);
+                    //get ties
+                    ties = Int32.Parse(line);
+                }
                 file.Close();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("ERROR. File Not Found");
+            }
+        }
 
-                //calculations
+        public void writeStats(int i)
+        {
+            try
+            {
                 gamesPlayed++;
 
                 if (i == 1)
@@ -259,19 +273,24 @@ namespace CIS153_FinalProject
                 {
                     ties++;
                 }
-
-
-
-                //write
+                string fileName = "GameStats.txt";
+                //finds the directory of the application
+                string baseDirectoryPath = AppDomain.CurrentDomain.BaseDirectory;
+                //combines the application directory with the name of the file
+                //to get the relative path. allows this to work on any computer
+                string filePath = Path.Combine(baseDirectoryPath, fileName);
                 StreamWriter writer = new StreamWriter(filePath);
-                writer.WriteLine($"{ gamesPlayed}, { playerWins}, { computerWins}, { ties}");
+                writer.WriteLine($"{gamesPlayed}, {playerWins}, {computerWins}, {ties}");
                 writer.Close();
             }
             catch (Exception e)
             {
                 Debug.WriteLine("ERROR. File Not Found");
             }
+        }
 
+        private async Task statUpdate()
+        {
             //keeps game screen up for a few seconds
             await Task.Delay(TimeSpan.FromSeconds(3));
 
@@ -447,7 +466,7 @@ namespace CIS153_FinalProject
 
         private void Singleplayer_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (gameOver != true)
+            if (!gameOver)
             {
                 WCForm.Show();
             }
