@@ -1,4 +1,9 @@
-﻿using System;
+﻿//============================================================================
+//Authors: Cole Bourbina, Nathan Gamboa, Gavin Harper, Todd Sachs, Owen White
+//Date  : 05-10-2026
+//Desc  : Connect Four
+//============================================================================
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
